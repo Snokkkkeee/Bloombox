@@ -6,10 +6,10 @@ import { FaHome, FaChartBar, FaChartPie, FaInbox, FaPaperPlane, FaArchive, FaLis
 const { Title } = Typography;
 
 function Sidebar() {
-  return (
+  return (   
     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-      <Title level={3} style={{ color: 'white', margin: '10px' }}>Gavin Prinsloo</Title>
-      <Menu.Divider />
+      
+      <Title level={3} style={{ color: 'lightblue', margin: '10px', fontSize: '24px', fontWeight: 'bold' }}>Gavin Prinsloo</Title>      <Menu.Divider />
       <Menu.Item key="1" icon={<FaHome />}><Link to="/dashboard">Dashboard</Link></Menu.Item>
       <Menu.Divider />
       <Menu.SubMenu key="sub1" icon={<FaChartBar />} title="Overview">

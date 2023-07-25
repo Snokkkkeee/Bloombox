@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout, Menu, Dropdown, Avatar, Image, Input, Badge, Tooltip } from 'antd';
-import { UserOutlined, BellOutlined, SearchOutlined, AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { UserOutlined, BellOutlined, SearchOutlined, AppstoreOutlined, MailOutlined, SettingOutlined, HomeOutlined, InboxOutlined, UserSwitchOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const { Header } = Layout;
 const { SubMenu } = Menu;
@@ -8,14 +9,20 @@ const { SubMenu } = Menu;
 const Navbar = () => {
   const userMenu = (
     <Menu>
-      <Menu.Item key="1">Profile</Menu.Item>
-      <Menu.Item key="2">Settings</Menu.Item>
-      <Menu.Item key="3">Logout</Menu.Item>
+      <Menu.Item key="1">
+        <Link to="/authentication/signin">Sign In</Link>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <Link to="/authentication/signup">Sign Up</Link>
+      </Menu.Item>
+      <Menu.Item key="3">
+        <Link to="/authentication/resetpassword">Reset Password</Link>
+      </Menu.Item>
     </Menu>
   );
 
   return (
-    <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
+    <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px', height: '48px' }}>
       <Image
         width={220}
         src="/src/assets/GrowBox.png"
@@ -24,7 +31,7 @@ const Navbar = () => {
       <Menu theme="dark" mode="horizontal" style={{ display: 'flex', alignItems: 'center' }}>
         <Menu.Item key="1">
           <Avatar>G</Avatar>
-          <span style={{ marginLeft: 20    }}>Gavin Prinsloo</span>
+          <span style={{ marginLeft: 20 }}>Gavin Prinsloo</span>
         </Menu.Item>
         <Menu.Item key="2">
           <Input
@@ -34,14 +41,24 @@ const Navbar = () => {
           />
         </Menu.Item>
         <SubMenu key="SubMenu" icon={<AppstoreOutlined />} title="Navigation">
-          <Menu.ItemGroup title="Item 1">
-            <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title="Item 2">
-            <Menu.Item key="setting:3">Option 3</Menu.Item>
-            <Menu.Item key="setting:4">Option 4</Menu.Item>
-          </Menu.ItemGroup>
+          <Menu.Item key="setting:1">
+            <Link to="/settings/myaccount">
+              <UserOutlined />
+              My Account
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="setting:2">
+            <Link to="/settings/mynotifications">
+              <BellOutlined />
+              My Notifications
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="setting:3">
+            <Link to="/messages/inbox">
+              <InboxOutlined />
+              Inbox
+            </Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
       <Menu theme="dark" mode="horizontal" style={{ display: 'flex', alignItems: 'center' }}>
@@ -52,7 +69,7 @@ const Navbar = () => {
             </Badge>
           </Tooltip>
         </Menu.Item>
-          <Menu.Item key="4">
+        <Menu.Item key="4">
           <Dropdown overlay={userMenu} trigger={['click']}>
             <SettingOutlined style={{ color: 'white' }} />
           </Dropdown>

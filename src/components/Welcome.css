@@ -78,8 +78,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: url('/Users/jwsnooke/Desktop/BloomBox/src/assets/72968789-8572-4a12-9031-bf334d0e69c6.JPG')
-      100% center / cover border-box border-box;
+    background: url('/src/assets/72968789-8572-4a12-9031-bf334d0e69c6.JPG') 100% center / cover border-box border-box;
+  /* other styles */
     backdrop-filter: blur(120px);
     position: relative;
     min-width: 0px;

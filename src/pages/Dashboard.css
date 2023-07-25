@@ -10,17 +10,17 @@
   /* Layout */
   body {
     font-family: 'Roboto', sans-serif;
-    background: url("https://demos.creative-tim.com/vision-ui-dashboard-react/static/media/body-background.9e7d96f6.png"), linear-gradient(to right, purple, blue);
+    background: url("../assets/body-background.png"), linear-gradient(to right, purple, blue);
     background-size: cover;
     min-height: 100vh;
   }
   
   /* Content */
   .dashboard-content {
-    padding: 24px;
+    padding: 0px 16px 16px 16px;
     background-color: transparent;
     overflow: auto;
-    min-height: calc(100vh - 48px);
+    min-height: calc(100vh - 64px);
   }
   
   /* Inner Layout */

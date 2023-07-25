@@ -1,5 +1,6 @@
-main {
-  text-align: center;
-  vertical-align: center;
-  line-height: 100vh;
+body {
+  font-family: 'Roboto', sans-serif;
+  background: url("../assets/body-background.png"), linear-gradient(to right, rgba(128, 0, 128, 0.5), rgba(0, 0, 255, 0.5));
+  background-size: cover;
+  min-height: 100vh;
 }
