@@ -41,8 +41,7 @@ function App() {
     <Router>
      <Layout style={{backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', minHeight: '100vh'}}>
         <Navbar />
-        <Header>
-        </Header>
+    
         <Layout>
           <Sider>
             <Sidebar />
