@@ -1,40 +1,83 @@
 import React from "react";
-import { Typography, List, Card } from "antd";
+import { Layout, Row, Col, Card } from "antd";
+import "./Dashboard.css";
+// Import your components
+import EnergyMeter from "../components/EnergyMeter";
+import HumidityGauge from "../components/HumidityGauge";
+import LightControl from "../components/LightControl";
+import SoilMoisture from "../components/SoilMoistureBarGraph";
+import TemperatureGauge from "../components/TemperatureGauge";
+import WaterLevel from "../components/WaterLevelGauge";
+import FanControl from "../components/FanControl";
+import FertilizerDispenser from "../components/FertilizerDispenser";
+import WelcomePage from "../components/Welcome";
+import backgroundImage from '../assets/body-background.png';
 
-const { Title } = Typography;
+const { Content } = Layout;
 
-function Main() {
-  // Replace with actual data
-  const data = [
-    {
-      title: "Plant 1",
-      description: "This is a description of Plant 1.",
-      // Add more plant details as needed
-    },
-    {
-      title: "Plant 2",
-      description: "This is a description of Plant 2.",
-      // Add more plant details as needed
-    },
-    // Add more plants as needed
-  ];
-
+const Main = () => {
   return (
-    <div>
-      <Title level={2}>Your Plants</Title>
-      <List
-        grid={{ gutter: 16, column: 4 }}
-        dataSource={data}
-        renderItem={(item) => (
-          <List.Item>
-            <Card title={item.title}>
-              <p>{item.description}</p>
-              {/* Add more plant details as needed */}
-            </Card>
-          </List.Item>
-        )}
-      />
-    </div>
+    <Layout style={{ minHeight: "100vh", background: 'transparent' }}>
+      <Layout style={{backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', minHeight: '100vh'}}>
+        <Content>
+          <Row gutter={16}>
+            <Col xs={24} sm={24} md={24} lg={24}>
+              <Card className="dashboard-card">
+                <WelcomePage />
+              </Card>
+            </Col>
+          </Row>
+          <Row gutter={[16, 16]}>
+            <Col xs={24} sm={24} md={8} lg={8}>
+              <Card className="dashboard-card" title="Light Control">
+                <LightControl />
+              </Card>
+            </Col>
+            <Col xs={24} sm={24} md={8} lg={8}>
+              <Card className="dashboard-card" title="Fan Control">
+                <FanControl />
+              </Card>
+            </Col>
+            <Col xs={24} sm={24} md={8} lg={8}>
+              <Card className="dashboard-card" title="Fertilizer Dispenser">
+                <FertilizerDispenser />
+              </Card>
+            </Col>
+          </Row>
+          <Row gutter={[16, 16]}>
+            <Col xs={24} sm={24} md={12} lg={12}>
+              <Card className="dashboard-card" title="Energy Meter">
+                <EnergyMeter />
+              </Card>
+            </Col>
+            <Col xs={24} sm={24} md={12} lg={12}>
+              <Card className="dashboard-card" title="Water Level">
+                <WaterLevel />
+              </Card>
+            </Col>
+          </Row>
+          <Row gutter={[16, 16]}>
+            <Col xs={24} sm={24} md={24}>
+              <Card className="dashboard-card" title="Soil Moisture">
+                <SoilMoisture />
+              </Card>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col xs={24} sm={24} md={12}>
+              <Card className="dashboard-card" title="Temperature Gauge">
+                <TemperatureGauge />
+              </Card>
+            </Col>
+            <Col xs={24} sm={24} md={12}>
+              <Card className="dashboard-card" title="Humidity Gauge">
+                <HumidityGauge />
+              </Card>
+            </Col>
+          </Row>
+        </Content>
+      </Layout>
+    </Layout>
   );
 }
 

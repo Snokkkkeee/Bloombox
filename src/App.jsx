@@ -48,6 +48,7 @@ function App() {
           </Sider>
           <Content>
             <Routes>
+            <Route path="/" element={<DashboardPage />} />
               <Route path="/dashboard/*" element={<DashboardPage />} />
               <Route path="/overview/main" element={<Main />} />
               <Route path="/overview/analytics" element={<Analytics />} />

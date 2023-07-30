@@ -72,14 +72,13 @@
       max-width: 100%;
     }
   }
-  .css-rb0gy66 {
+  .css-rb0gy6 {
     color: rgba(0, 0, 0, 0.87);
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: url('/src/assets/72968789-8572-4a12-9031-bf334d0e69c6.JPG') 100% center / cover border-box border-box;
-  /* other styles */
+    background: url('/Users/jwsnooke/Desktop/Bloombox Layout/src/assets/87ce6c9a-ae27-489e-9322-c85822dfb948.JPG') center / 100% auto no-repeat;  /* other styles */
     backdrop-filter: blur(120px);
     position: relative;
     min-width: 0px;
