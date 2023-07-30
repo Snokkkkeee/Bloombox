@@ -1,3 +1,4 @@
+// Sidebar.jsx
 import React from 'react';
 import { Menu, Typography } from 'antd';
 import { Link } from 'react-router-dom';
@@ -9,7 +10,7 @@ function Sidebar() {
   return (   
     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
       
-      <Title level={3} style={{ color: 'lightblue', margin: '10px', fontSize: '24px', fontWeight: 'bold' }}>Gavin Prinsloo</Title>      <Menu.Divider />
+      <Title level={3} style={{ color: 'lightblue', margin: '10px', fontSize: '24px', fontWeight: 'bold' }}></Title>      <Menu.Divider />
       <Menu.Item key="1" icon={<FaHome />}><Link to="/dashboard">Dashboard</Link></Menu.Item>
       <Menu.Divider />
       <Menu.SubMenu key="sub1" icon={<FaChartBar />} title="Overview">
@@ -51,7 +52,6 @@ function Sidebar() {
         <Menu.Item key="22" icon={<FaSignInAlt />}><Link to="/authentication/signin">Sign In</Link></Menu.Item>
         <Menu.Item key="23" icon={<FaUserPlus />}><Link to="/authentication/signup">Sign Up</Link></Menu.Item>
         <Menu.Item key="24" icon={<FaKey />}><Link to="/authentication/forgotpassword">Forgot Password</Link></Menu.Item>
-        <Menu.Item key="25" icon={<FaKey />}><Link to="/authentication/resetpassword">Reset Password</Link></Menu.Item>
       </Menu.SubMenu>
     </Menu>
   );

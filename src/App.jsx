@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from 'antd';
@@ -27,7 +28,6 @@ import Networks from './pages/Networks';
 import Preferences from './pages/Preferences';
 import Security from './pages/Security';
 import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import FooterComponent from './components/FooterComponent';
@@ -74,7 +74,6 @@ function App() {
               <Route path="/authentication/signin" element={<SignIn />} />
               <Route path="/authentication/signup" element={<SignUp />} />
               <Route path="/authentication/forgotpassword" element={<ForgotPassword />} />
-              <Route path="/authentication/resetpassword" element={<ResetPassword />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Content>
