@@ -7,7 +7,7 @@ const { Title, Text } = Typography;
 const ReportWelcome = () => {
   return (
     <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-12 MuiGrid-grid-xl-5 css-1xoin7r">
-      <Card className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-rb0gy6">
+      <Card className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-rb0gy6666">
         <div className="MuiBox-root css-1vhjwv9">
           <div className="MuiBox-root css-7wmvu8">
             <Text className="MuiTypography-root MuiTypography-button css-1nwa4id">Welcome back,</Text>
