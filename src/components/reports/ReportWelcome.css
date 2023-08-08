@@ -71,6 +71,20 @@
       flex-grow: 0;
       max-width: 100%;
     }
+
+    .text {
+      color: white;
+      font-size: 18px;
+      /* Add any other custom styles for the "Welcome back" text */
+    }
+    
+    /* Customize the "Reports" title */
+    .Title {
+      color: white;
+      font-size: 24px;
+      /* Add any other custom styles for the "Reports" title */
+    }
+    
   }
   .css-rb0gy6666 {
     color: rgba(0, 0, 0, 0.87);
@@ -78,7 +92,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: url("https://github.com/Snokkkkeee/Bloombox-Layout/blob/master/src/assets/IMG_7106.PNG") center / 100% auto no-repeat;  /* other styles */
+    background: url('/Users/jwsnooke/Desktop/Bloombox Layout/src/assets/7514bb0a-6d8d-49e9-a3ea-c710ec946ccf.JPG') center / 100% auto no-repeat;  /* other styles */
     backdrop-filter: blur(120px);
     position: relative;
     min-width: 0px;
@@ -122,7 +136,7 @@
     text-transform: none;
     vertical-align: unset;
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 0.98);
     font-weight: 700;
   }
   .css-xjb1v0 {

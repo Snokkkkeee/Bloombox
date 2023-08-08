@@ -1,9 +1,13 @@
 .chart-container {
-    width: 100%;
+    width: 80%;
     height: 100%;
     aspect-ratio: 1.6; /* Adjust this value to get the aspect ratio you want */
     max-width: 100%;
     max-height: 100%;
     overflow: auto;
+    background-color: transparent;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
   }
   

@@ -21,6 +21,8 @@ import styled from 'styled-components';
 import "/Users/jwsnooke/Desktop/Bloombox Layout/src/App.jsx"
 import backgroundImage from '/Users/jwsnooke/Desktop/Bloombox Layout/src/assets/body-background.png';
 
+
+
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
 

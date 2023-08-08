@@ -11,7 +11,8 @@ import {
 } from "antd";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
-import backgroundImage from '../assets/body-background.png';
+import backgroundImage from '/Users/jwsnooke/Desktop/Bloombox Layout/src/assets/body-background.png';
+
 
 const { Title } = Typography;
 const { Header, Content } = Layout;
@@ -55,10 +56,7 @@ export default function SignIn() {
           <Row justify="center">
             <Col span={16}>
             <Title style={{ color: 'white' }}>Sign In</Title>
-              <p>
-                Use these awesome forms to login or create new account in your
-                project for free.
-              </p>
+             
               <Card title="Login With">
                 <Form
                   name="basic"
@@ -96,6 +94,9 @@ export default function SignIn() {
                   </Form.Item>
                 </Form>
               </Card>
+              <p>
+                Don't have an account?<Link to="/authentication/signup">Sign In</Link>
+              </p>
             </Col>
           </Row>
         </div>

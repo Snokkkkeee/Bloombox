@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Row, Col, Card } from "antd";
+import { Layout, Row, Col, Card, } from "antd";
 import "./Dashboard.css";
 // Import your components
 import EnergyMeter from "../components/EnergyMeter";
@@ -20,8 +20,12 @@ const DashboardPage = () => {
     <Layout style={{ minHeight: "100vh", background: 'transparent' }}>
       <Layout style={{backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', minHeight: '100vh'}}>
         <Content>
+    
           <Row gutter={16}>
             <Col xs={24} sm={24} md={24} lg={24}>
+              
+             
+            
               <Card className="dashboard-card">
                 <WelcomePage />
               </Card>

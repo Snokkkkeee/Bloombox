@@ -2,7 +2,7 @@
 import React from 'react';
 import { Menu, Typography } from 'antd';
 import { Link } from 'react-router-dom';
-import { FaHome, FaChartBar, FaChartPie, FaInbox, FaPaperPlane, FaArchive, FaListAlt, FaUserFriends, FaUserShield, FaUserTag, FaServer, FaDatabase, FaDesktop, FaNetworkWired, FaUserCircle, FaBell, FaUserCog, FaShieldAlt, FaSignInAlt, FaUserPlus, FaKey, FaUserLock, FaEnvelopeOpen, FaUserCheck, FaUserTie, FaUserClock, FaUserSecret } from 'react-icons/fa';
+import { FaHome, FaChartBar,  FaChartPie, FaWifi, FaInbox, FaPaperPlane, FaArchive, FaListAlt, FaUserFriends, FaUserShield, FaUserTag, FaServer, FaDatabase, FaDesktop, FaNetworkWired, FaUserCircle, FaBell, FaUserCog, FaShieldAlt, FaSignInAlt, FaUserPlus, FaKey, FaUserLock, FaEnvelopeOpen, FaUserCheck, FaUserTie, FaUserClock, FaUserSecret, FaCanadianMapleLeaf, FaGlasses } from 'react-icons/fa';
 
 const { Title } = Typography;
 
@@ -13,28 +13,15 @@ function Sidebar() {
       <Title level={3} style={{ color: 'lightblue', margin: '10px', fontSize: '24px', fontWeight: 'bold' }}></Title>      <Menu.Divider />
       <Menu.Item key="1" icon={<FaHome />}><Link to="/dashboard">Dashboard</Link></Menu.Item>
       <Menu.Divider />
-      <Menu.SubMenu key="sub1" icon={<FaChartBar />} title="Overview">
-        <Menu.Item key="2" icon={<FaHome />}><Link to="/overview/main">Main</Link></Menu.Item>
+      <Menu.SubMenu key="sub1" icon={<FaDesktop />} title="Overview">
+        <Menu.Item key="2" icon={<FaWifi />}><Link to="/overview/activity">Activity</Link></Menu.Item>
         <Menu.Item key="3" icon={<FaChartBar />}><Link to="/overview/analytics">Analytics</Link></Menu.Item>
-        <Menu.Item key="4" icon={<FaChartPie />}><Link to="/overview/reports">Reports</Link></Menu.Item>
-        <Menu.Item key="5" icon={<FaChartPie />}><Link to="/overview/summary">Summary</Link></Menu.Item>
       </Menu.SubMenu>
       <Menu.Divider />
-      <Menu.SubMenu key="sub2" icon={<FaEnvelopeOpen />} title="Messages">
-        <Menu.Item key="6" icon={<FaInbox />}><Link to="/messages/inbox">Inbox</Link></Menu.Item>
-        <Menu.Item key="7" icon={<FaPaperPlane />}><Link to="/messages/sent">Sent</Link></Menu.Item>
-        <Menu.Item key="8" icon={<FaEnvelopeOpen />}><Link to="/messages/drafts">Drafts</Link></Menu.Item>
-        <Menu.Item key="9" icon={<FaArchive />}><Link to="/messages/archive">Archive</Link></Menu.Item>
-      </Menu.SubMenu>
+
+
       <Menu.Divider />
-      <Menu.SubMenu key="sub3" icon={<FaUserCheck />} title="Users">
-        <Menu.Item key="10" icon={<FaListAlt />}><Link to="/users/list">User List</Link></Menu.Item>
-        <Menu.Item key="11" icon={<FaUserFriends />}><Link to="/users/friends">Friends</Link></Menu.Item>
-        <Menu.Item key="12" icon={<FaUserShield />}><Link to="/users/admins">Admins</Link></Menu.Item>
-        <Menu.Item key="13" icon={<FaUserTag />}><Link to="/users/roles">User Roles</Link></Menu.Item>
-      </Menu.SubMenu>
-      <Menu.Divider />
-      <Menu.SubMenu key="sub4" icon={<FaDesktop />} title="Monitor">
+      <Menu.SubMenu key="sub4" icon={<FaGlasses />} title="Monitor">
         <Menu.Item key="14" icon={<FaServer />}><Link to="/monitor/servers">Servers</Link></Menu.Item>
         <Menu.Item key="15" icon={<FaDatabase />}><Link to="/monitor/databases">Databases</Link></Menu.Item>
         <Menu.Item key="16" icon={<FaDesktop />}><Link to="/monitor/systems">Systems</Link></Menu.Item>

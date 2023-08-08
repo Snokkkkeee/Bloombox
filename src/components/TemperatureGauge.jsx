@@ -48,7 +48,7 @@ export default function TemperatureGauge() {
         formatter: ({ percent }) => ` ${(percent * 50).toFixed(0) + '°C'}`,
         style: {
           color: 'rgba(255,255,255, 0.9)',
-          fontSize: 16,
+          fontSize: 5,
         },
       },
     },

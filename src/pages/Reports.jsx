@@ -11,12 +11,15 @@ const { Content } = Layout;
 
 const Reports = () => {
   return (
+    <Layout style={{ minHeight: "100vh", background: 'transparent' }}>
     <Layout className="outer-layout" style={{backgroundImage: `url(${backgroundImage})`}}>
       <Layout className="inner-layout">
         <Content className="dashboard-content">
-          <Row gutter={16}>
+        <Row gutter={16}>
             <Col xs={24} sm={24} md={24} lg={24}>
-              <ReportWelcome />
+              <Card className="dashboard-card">
+                <ReportWelcome />
+              </Card>
             </Col>
           </Row>
           <Row gutter={[16, 16]}>
@@ -40,6 +43,7 @@ const Reports = () => {
           </Row>
         </Content>
       </Layout>
+    </Layout>
     </Layout>
   );
 }

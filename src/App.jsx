@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import DashboardPage from './pages/DashboardPage';
 import NotFound from './pages/NotFound';
-import Main from './pages/Main';
+import Activity from './pages/Activity';
 import Analytics from './pages/Analytics';
 import MyAccount from './pages/MyAccount';
 import MyNotifications from './pages/MyNotifications';
@@ -13,14 +13,6 @@ import SignUp from './pages/SignUp';
 import Overview from './pages/Overview';
 import Reports from './pages/Reports';
 import Summary from './pages/Summary';
-import Inbox from './pages/Inbox';
-import Sent from './pages/Sent';
-import Drafts from './pages/Drafts';
-import Archive from './pages/Archive';
-import UserList from './pages/UserList';
-import Friends from './pages/Friends';
-import Admins from './pages/Admins';
-import UserRoles from './pages/UserRoles';
 import Servers from './pages/Servers';
 import Databases from './pages/Databases';
 import Systems from './pages/Systems';
@@ -50,19 +42,12 @@ function App() {
             <Routes>
             <Route path="/" element={<DashboardPage />} />
               <Route path="/dashboard/*" element={<DashboardPage />} />
-              <Route path="/overview/main" element={<Main />} />
+              <Route path="/overview/activity" element={<Activity />} />
               <Route path="/overview/analytics" element={<Analytics />} />
               <Route path="/overview/main" element={<Overview />} />
               <Route path="/overview/reports" element={<Reports />} />
               <Route path="/overview/summary" element={<Summary />} />
-              <Route path="/messages/inbox" element={<Inbox />} />
-              <Route path="/messages/sent" element={<Sent />} />
-              <Route path="/messages/drafts" element={<Drafts />} />
-              <Route path="/messages/archive" element={<Archive />} />
-              <Route path="/users/list" element={<UserList />} />
-              <Route path="/users/friends" element={<Friends />} />
-              <Route path="/users/admins" element={<Admins />} />
-              <Route path="/users/roles" element={<UserRoles />} />
+            
               <Route path="/monitor/servers" element={<Servers />} />
               <Route path="/monitor/databases" element={<Databases />} />
               <Route path="/monitor/systems" element={<Systems />} />
