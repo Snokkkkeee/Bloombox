@@ -1,107 +1,74 @@
 import React from 'react';
-import {
-  Layout,
-  Typography,
-  Card,
-  Form,
-  Input,
-  Checkbox,
-  Row,
-  Col,
-} from "antd";
-import { Link } from "react-router-dom";
-import styled from 'styled-components';
-import backgroundImage from '/Users/jwsnooke/Desktop/Bloombox Layout/src/assets/body-background.png';
+import { Form, Input, Button, Layout, Typography } from 'antd';
+import { UserOutlined, LockOutlined, GoogleOutlined, GithubOutlined } from '@ant-design/icons';
+import logo from '/Users/jwsnooke/Desktop/Bloombox Layout/src/assets/GrowBox.png';
+
+import backgroundImage from '/Users/jwsnooke/Desktop/Bloombox Layout/src/assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png';
 
 
-const { Title } = Typography;
-const { Header, Content } = Layout;
 
-const StyledFormItem = styled(Form.Item)`
-  .ant-form-item-label {
-    label {
-      color: deeppurple; 
-      padding: 15px; 
-      margin: 10px; 
-    }
-  }
-  .ant-input {
-    margin: 10px;
-    padding: 15px;
-    border-radius: 20px;
-    border: 1px solid blue;
-    &:hover {
-      border-color: deepurple;
-    }
-  }
-`;
+const { Content } = Layout;
+const { Title, Text } = Typography;
 
-export default function SignIn() {
+const inputStyle = {
+width: '100%',
+padding: '10px',
+borderRadius: '10px',
+  color: '#333',
+};
+
+
+function SignIn() {
   const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.log('Received values of form: ', values);
   };
 
   return (
-    <Layout style={{backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', minHeight: '100vh'}}>
+    <Layout style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', minHeight: '100vh', minWidth: '50vw', Height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Content style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '50px' }}>
+        <div style={{ maxWidth: '1000px', background: 'rgba(255, 255, 255, 0.9)', padding: '50px', borderRadius: '25px', textAlign: 'center', margin: '20px' }}>
 
-      <Header>
-        <div className="logo" />
-      </Header>
-      <Content style={{ padding: "0 50px" }}>
-        <div className="site-layout-content">
-          <Row justify="center">
-            <Col span={16}>
-            <Title style={{ color: 'white' }}>Sign In</Title>
-             
-              <Card title="Login With">
-                <Form
-                  name="basic"
-                  initialValues={{ remember: true }}
-                  onFinish={onFinish}
-                  onFinishFailed={onFinishFailed}
-                >
-                  <StyledFormItem
-                    label="Email"
-                    name="email"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input your email!",
-                        type: 'email'
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </StyledFormItem>
-                  <StyledFormItem
-                    label="Password"
-                    name="password"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input your password!",
-                      },
-                    ]}
-                  >
-                    <Input.Password />
-                  </StyledFormItem>
-                  <Form.Item name="remember" valuePropName="checked">
-                    <Checkbox>Remember me</Checkbox>
-                  </Form.Item>
-                </Form>
-              </Card>
-              <p>
-                Don't have an account?<Link to="/authentication/signup">Sign In</Link>
-              </p>
-            </Col>
-          </Row>
+          <Title level={2} style={{ color: '#2accb6', marginBottom: '20px' }}>Connect to <img src={logo} alt="BloomBox" style={{ width: '200px', verticalAlign: 'middle',  marginBottom: '20px' }} /></Title>
+          <Text type="secondary" style={{ marginBottom: '30px' }}>Sign in to continue to your dashboard</Text>
+          <Form
+            name="normal_login"
+            className="login-form"
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            style={{ marginTop: '30px' }}
+          >
+            <Form.Item
+              name="username"
+              rules={[{ required: true, message: 'Please input your Username!' }]}
+            >
+              <Input prefix={<UserOutlined />} placeholder="Username/Email" style={inputStyle} />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[{ required: true, message: 'Please input your Password!' }]}
+            >
+              <Input prefix={<LockOutlined />} type="password" placeholder="Password"  style={inputStyle}/>
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" style={{ width: '80%', height: '40px', fontSize: '16px', borderRadius: '15px', border: 'none', marginBottom: '10px' }}>
+                Log in
+              </Button>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+                <a href="/authentication/forgotpassword">Forgot password</a>
+                <a href="/authentication/signup">Create account</a>
+              </div>
+            </Form.Item>
+          </Form>
+          <Button icon={<GoogleOutlined />} style={{ width: '60%', height: '40px', fontSize: '16px', backgroundColor: '#2accb6', color: 'white', borderRadius: '15px', border: 'none', marginBottom: '15px' }}>
+            Sign in with Google
+          </Button>
+          <Button icon={<GithubOutlined />} style={{ width: '60%', height: '40px', fontSize: '16px', backgroundColor: '#333', color: 'white', borderRadius: '15px', border: 'none', marginBottom: '15px' }}>
+            Sign in with GitHub
+          </Button>
         </div>
       </Content>
-     
     </Layout>
   );
 }
+
+export default SignIn;
