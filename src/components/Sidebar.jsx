@@ -14,14 +14,14 @@ function Sidebar() {
       <Menu.Item key="1" icon={<FaHome />}><Link to="/dashboard">Dashboard</Link></Menu.Item>
       <Menu.Divider />
       <Menu.SubMenu key="sub1" icon={<FaDesktop />} title="Overview">
-        <Menu.Item key="2" icon={<FaWifi />}><Link to="/overview/activity">Activity</Link></Menu.Item>
+
         <Menu.Item key="3" icon={<FaChartBar />}><Link to="/overview/analytics">Analytics</Link></Menu.Item>
       </Menu.SubMenu>
       <Menu.Divider />
 
 
       <Menu.Divider />
-      <Menu.SubMenu key="sub4" icon={<FaGlasses />} title="Monitor">
+      <Menu.SubMenu key="sub4" icon={<FaWifi />} title="Monitor">
         <Menu.Item key="14" icon={<FaServer />}><Link to="/monitor/servers">Servers</Link></Menu.Item>
         <Menu.Item key="15" icon={<FaDatabase />}><Link to="/monitor/databases">Databases</Link></Menu.Item>
         <Menu.Item key="16" icon={<FaDesktop />}><Link to="/monitor/systems">Systems</Link></Menu.Item>
@@ -31,7 +31,7 @@ function Sidebar() {
       <Menu.SubMenu key="sub5" icon={<FaUserCog />} title="Settings">
         <Menu.Item key="18" icon={<FaUserCircle />}><Link to="/settings/myaccount">My Account</Link></Menu.Item>
         <Menu.Item key="19" icon={<FaBell />}><Link to="/settings/mynotifications">My Notifications</Link></Menu.Item>
-        <Menu.Item key="20" icon={<FaUserCog />}><Link to="/settings/preferences">Preferences</Link></Menu.Item>
+        <Menu.Item key="20" icon={<FaUserCog />}><Link to="/settings/messages">Messages</Link></Menu.Item>
         <Menu.Item key="21" icon={<FaShieldAlt />}><Link to="/settings/security">Security</Link></Menu.Item>
       </Menu.SubMenu>
       <Menu.Divider />

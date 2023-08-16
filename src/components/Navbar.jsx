@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px', height: '48px' }}>
       <Image
-        width={220}
+        width={170}
         src="/src/assets/GrowBox.png"
         preview={false}
       />

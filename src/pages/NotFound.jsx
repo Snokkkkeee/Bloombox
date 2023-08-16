@@ -1,19 +1,20 @@
-import React from "react";
-
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Result, Button } from 'antd';
 
 function NotFound() {
-  let location = useLocation();
-  let currentPath = location.pathname;
-  let validPaths = ["/", "/main", "/analytics", "/mynotifications"];
-
-  if (validPaths.includes(currentPath)) {
-    return null;
-  } else {
-    // Return your "NotFound" component
-    return <div>Page not found</div>
-  }
+  return (
+    <Result
+      status="404"
+      title="404"
+      subTitle="Sorry, the page you visited does not exist."
+      extra={
+        <Link to="/">
+          <Button type="primary">Back to Dashboard</Button>
+        </Link>
+      }
+    />
+  );
 }
-
 
 export default NotFound;

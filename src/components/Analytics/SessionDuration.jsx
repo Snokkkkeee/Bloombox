@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import '/Users/jwsnooke/Desktop/Bloombox Layout/src/components/Analytics/Session.css';
+
 class SessionDuration extends React.Component {
   constructor(props) {
     super(props);
@@ -15,21 +16,12 @@ class SessionDuration extends React.Component {
       options: {
         chart: {
           type: 'line',
+          background: 'transparent', // Set background to transparent
           zoom: {
-            enabled: true,
+            enabled: false,
           },
           toolbar: {
-            show: true,
-            tools: {
-              download: true,
-              selection: true,
-              zoom: true,
-              zoomin: true,
-              zoomout: true,
-              pan: true,
-              reset: true,
-            },
-            autoSelected: 'zoom',
+            show: false,
           },
         },
         dataLabels: {
@@ -79,26 +71,13 @@ class SessionDuration extends React.Component {
         grid: {
           borderColor: '#f1f1f1',
         },
-        responsive: [
-          {
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: '100%',
-              },
-              legend: {
-                position: 'bottom',
-              },
-            },
-          },
-        ],
       },
     };
   }
 
   render() {
     return (
-      <div className="chart-container">
+      <div className="chart-container" style={{ height: '300px' }}>
         <ReactApexChart
           options={this.state.options}
           series={this.state.series}

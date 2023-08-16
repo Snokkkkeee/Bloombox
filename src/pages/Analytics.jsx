@@ -44,18 +44,7 @@ const Analytics = () => {
               </Card>
             </Col>
           </Row>
-          <Row gutter={[16, 16]}>
-            <Col xs={24} sm={24} md={12} lg={12}>
-              <Card className="dashboard-card" title="Energy Meter">
-                <EnergyMeter />
-              </Card>
-            </Col>
-            <Col xs={24} sm={24} md={12} lg={12}>
-              <Card className="dashboard-card" title="Water Level">
-                <WaterLevel />
-              </Card>
-            </Col>
-          </Row>
+         
           <Row gutter={[16, 16]}>
             <Col xs={24} sm={24} md={12} lg={12}>
               <Card className="analytics-card" title="User Activity">

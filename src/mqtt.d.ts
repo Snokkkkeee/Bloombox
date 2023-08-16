@@ -1,1 +1,1 @@
-declare module 'mqtt/dist/mqtt.min.js';
+declare module "mqtt/dist/mqtt.min.js";

@@ -1,44 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Button, Typography, Row, Col,} from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import React from 'react';
+import { Layout, Breadcrumb, List, Avatar, Input, Menu, Typography } from 'antd';
+import { UserOutlined, MenuFoldOutlined, SearchOutlined, MailOutlined, DashboardOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
 
-const Messages = () => {
-  const [messages, setMessages] = useState([]);
+const { Header, Content, Footer} = Layout;
+const { Text } = Typography;
+const { Search } = Input;
 
-  useEffect(() => {
-    // Fetch messages from your API and set them in the state
-    // For now, we'll just use a static array
-    setMessages([
-      { id: 1, title: 'Message 1', message: 'This is message 1', type: 'message' },
-      { id: 2, title: 'Notification 1', message: 'This is notification 1', type: 'notification' },
-      // Add more messages and notifications as needed
-    ]);
-  }, []);
+const StyledHeader = styled(Header)`
+  background: #fff;
+  padding: 0;
+`;
 
-  return (
-    <Row style={{ padding: '10px' }}>
-      <Col span={24}>
-        <Header
-          title="Messages & Notifications"
-          subTitle="Here are your latest messages and notifications"
-          extra={
-            <Button type="primary" icon={<PlusOutlined />}>
-              Add Message
-            </Button>
-          }
-        />
-        <Row gutter={[16, 16]}>
-          {messages.map((message, index) => (
-            <Col xs={24} sm={6} key={message.id}>
-              <Card title={`${message.type.charAt(0).toUpperCase() + message.type.slice(1)} #${index + 1}`}>
-                <Typography.Text>{message.message}</Typography.Text>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Col>
-    </Row>
-  );
-};
+const StyledContent = styled(Content)`
+  margin: 0 16px;
+`;
+
+const StyledBreadcrumb = styled(Breadcrumb)`
+  margin: 16px 0;
+`;
+
+const StyledFooter = styled(Footer)`
+  text-align: center;
+`;
+
+const messages = [
+  {
+    title: 'Message from John',
+    icon: <UserOutlined />,
+    content: 'Hey, how are you doing?',
+  },
+  {
+    title: 'Message from Sarah',
+    icon: <UserOutlined />,
+    content: 'Don\'t forget our meeting tomorrow!',
+  },
+];
+
+const Messages = () => (
+  <Layout style={{ }}>
+  
+
+
+    <Layout>
+      <StyledHeader>
+        <MenuFoldOutlined />
+      </StyledHeader>
+      <StyledContent>
+ 
+        <Search placeholder="Search messages" onSearch={value => console.log(value)} enterButton />
+        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+          <List
+            itemLayout="horizontal"
+            dataSource={messages}
+            renderItem={item => (
+              <List.Item>
+                <List.Item.Meta
+                  avatar={<Avatar icon={item.icon} />}
+                  title={<a href="#">{item.title}</a>}
+                  description={item.content}
+                />
+              </List.Item>
+            )}
+          />
+        </div>
+      </StyledContent>
+
+    </Layout>
+  </Layout>
+);
 
 export default Messages;

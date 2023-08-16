@@ -4,20 +4,20 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import DashboardPage from './pages/DashboardPage';
 import NotFound from './pages/NotFound';
-import Activity from './pages/Activity';
+
 import Analytics from './pages/Analytics';
 import MyAccount from './pages/MyAccount';
 import MyNotifications from './pages/MyNotifications';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Overview from './pages/Overview';
-import Reports from './pages/Reports';
-import Summary from './pages/Summary';
+
+
 import Servers from './pages/Servers';
 import Databases from './pages/Databases';
 import Systems from './pages/Systems';
 import Networks from './pages/Networks';
-import Preferences from './pages/Preferences';
+import Messages from './pages/Messages';
 import Security from './pages/Security';
 import ForgotPassword from './pages/ForgotPassword';
 import Navbar from './components/Navbar';
@@ -26,7 +26,7 @@ import FooterComponent from './components/FooterComponent';
 import backgroundImage from './assets/body-background.png';
 
 
-const { Header, Sider, Content, Footer } = Layout;
+const { Sider, Content,  } = Layout;
 
 function App() {
   return (
@@ -42,11 +42,11 @@ function App() {
             <Routes>
             <Route path="/" element={<DashboardPage />} />
               <Route path="/dashboard/*" element={<DashboardPage />} />
-              <Route path="/overview/activity" element={<Activity />} />
+
               <Route path="/overview/analytics" element={<Analytics />} />
               <Route path="/overview/main" element={<Overview />} />
-              <Route path="/overview/reports" element={<Reports />} />
-              <Route path="/overview/summary" element={<Summary />} />
+      
+          
             
               <Route path="/monitor/servers" element={<Servers />} />
               <Route path="/monitor/databases" element={<Databases />} />
@@ -54,7 +54,7 @@ function App() {
               <Route path="/monitor/networks" element={<Networks />} />
               <Route path="/settings/myaccount" element={<MyAccount />} />
               <Route path="/settings/mynotifications" element={<MyNotifications />} />
-              <Route path="/settings/preferences" element={<Preferences />} />
+              <Route path="/settings/messages" element={<Messages />} />
               <Route path="/settings/security" element={<Security />} />
               <Route path="/authentication/signin" element={<SignIn />} />
               <Route path="/authentication/signup" element={<SignUp />} />
