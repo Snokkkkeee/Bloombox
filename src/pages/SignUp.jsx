@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Layout,
   Menu,
@@ -17,11 +17,9 @@ import {
   InstagramOutlined,
   GithubOutlined,
 } from "@ant-design/icons";
-import styled from 'styled-components';
-import "/Users/jwsnooke/Desktop/Bloombox Layout/src/App.jsx"
-import backgroundImage from '/Users/jwsnooke/Desktop/Bloombox Layout/src/assets/body-background.png';
-
-
+import styled from "styled-components";
+// import "/Users/jwsnooke/Desktop/Bloombox Layout/src/App.jsx"
+// import backgroundImage from 'src\assets\body-background.png';
 
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
@@ -29,9 +27,9 @@ const { Header, Footer, Content } = Layout;
 const StyledFormItem = styled(Form.Item)`
   .ant-form-item-label {
     label {
-      color: deeppurple; 
-      padding: 15px; 
-      margin: 10px; 
+      color: deeppurple;
+      padding: 15px;
+      margin: 10px;
     }
   }
   .ant-input {
@@ -55,17 +53,21 @@ export default function SignUp() {
   };
 
   return (
-    <Layout style={{backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', minHeight: '100vh'}}>
-
+    <Layout
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        minHeight: "100vh",
+      }}
+    >
       <Header>
         <div className="logo" />
-      
       </Header>
       <Content style={{ padding: "0 50px" }}>
         <div className="site-layout-content">
           <Row justify="center">
             <Col span={16}>
-            <Title style={{ color: 'white' }}>Sign Up</Title>
+              <Title style={{ color: "white" }}>Sign Up</Title>
               <p>
                 Use these awesome forms to login or create new account in your
                 project for free.
@@ -84,7 +86,7 @@ export default function SignUp() {
                       {
                         required: true,
                         message: "Please input your email!",
-                        type: 'email'
+                        type: "email",
                       },
                     ]}
                   >
@@ -111,7 +113,6 @@ export default function SignUp() {
           </Row>
         </div>
       </Content>
-     
     </Layout>
   );
 }
