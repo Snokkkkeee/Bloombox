@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 
 import logo from "../assets/GrowBox.png";
-import backgroundImage from "assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png";
+import backgroundImage from "../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png";
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -20,7 +20,7 @@ const inputStyle = {
   color: "#333",
 };
 
-function SignIn() {
+export default function SignIn() {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
@@ -124,10 +124,7 @@ function SignIn() {
                   justifyContent: "space-between",
                   marginTop: "10px",
                 }}
-              >
-                <a href="/authentication/forgotpassword">Forgot password</a>
-                <a href="/authentication/signup">Create account</a>
-              </div>
+              ></div>
             </Form.Item>
           </Form>
           <Button
@@ -165,5 +162,3 @@ function SignIn() {
     </Layout>
   );
 }
-
-export default SignIn;
