@@ -42,8 +42,8 @@ const FanControl = (props) => {
       </Col>
       <Col>
         <Switch
-          checkedChildren="ON"
-          unCheckedChildren="OFF"
+          checkedItems="ON"
+          unCheckedItems="OFF"
           defaultChecked={fanState}
           onChange={onFanChange}
         />
