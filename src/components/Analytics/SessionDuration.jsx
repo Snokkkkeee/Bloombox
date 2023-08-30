@@ -1,6 +1,5 @@
-import React from 'react';
-import ReactApexChart from 'react-apexcharts';
-import '/Users/jwsnooke/Desktop/Bloombox Layout/src/components/Analytics/Session.css';
+import React from "react";
+import ReactApexChart from "react-apexcharts";
 
 class SessionDuration extends React.Component {
   constructor(props) {
@@ -9,14 +8,14 @@ class SessionDuration extends React.Component {
     this.state = {
       series: [
         {
-          name: 'Session Duration',
+          name: "Session Duration",
           data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
         },
       ],
       options: {
         chart: {
-          type: 'line',
-          background: 'transparent', // Set background to transparent
+          type: "line",
+          background: "transparent", // Set background to transparent
           zoom: {
             enabled: false,
           },
@@ -29,11 +28,11 @@ class SessionDuration extends React.Component {
         },
         stroke: {
           width: [5],
-          curve: 'straight',
+          curve: "straight",
         },
         title: {
-          text: 'Session Duration',
-          align: 'left',
+          text: "Session Duration",
+          align: "left",
         },
         markers: {
           size: 0,
@@ -43,18 +42,18 @@ class SessionDuration extends React.Component {
         },
         xaxis: {
           categories: [
-            '01 Jan',
-            '02 Jan',
-            '03 Jan',
-            '04 Jan',
-            '05 Jan',
-            '06 Jan',
-            '07 Jan',
-            '08 Jan',
-            '09 Jan',
-            '10 Jan',
-            '11 Jan',
-            '12 Jan',
+            "01 Jan",
+            "02 Jan",
+            "03 Jan",
+            "04 Jan",
+            "05 Jan",
+            "06 Jan",
+            "07 Jan",
+            "08 Jan",
+            "09 Jan",
+            "10 Jan",
+            "11 Jan",
+            "12 Jan",
           ],
         },
         tooltip: {
@@ -62,14 +61,14 @@ class SessionDuration extends React.Component {
             {
               title: {
                 formatter: function (val) {
-                  return val + ' (mins)';
+                  return val + " (mins)";
                 },
               },
             },
           ],
         },
         grid: {
-          borderColor: '#f1f1f1',
+          borderColor: "#f1f1f1",
         },
       },
     };
@@ -77,7 +76,7 @@ class SessionDuration extends React.Component {
 
   render() {
     return (
-      <div className="chart-container" style={{ height: '300px' }}>
+      <div className="chart-container" style={{ height: "300px" }}>
         <ReactApexChart
           options={this.state.options}
           series={this.state.series}
