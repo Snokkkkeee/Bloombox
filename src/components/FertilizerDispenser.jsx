@@ -38,8 +38,8 @@ const FertilizerDispenser = () => {
       </Col>
       <Col>
         <Switch
-          checkedChildren="ON"
-          unCheckedChildren="OFF"
+          checkedItems="ON"
+          unCheckedItems="OFF"
           defaultChecked={fertilizerStatus === "ON"}
           onChange={handleFertilizerChange}
         />

@@ -43,7 +43,7 @@ function Databases() {
         <Space size="middle">
           <Button icon={<SyncOutlined />} onClick={() => handleRestart(record.key)}>Restart</Button>
           <Switch
-            checkedChildren={<PoweroffOutlined />}
+            checkedItems={<PoweroffOutlined />}
             unCheckedChildren={<PoweroffOutlined />}
             defaultChecked={record.status === 'Online'}
             onChange={(checked) => handleToggleStatus(record.key, checked)}
