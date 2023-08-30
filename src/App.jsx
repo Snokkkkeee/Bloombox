@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Layout } from "antd";
 import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import DashboardPage from "./pages/DashboardPage";
 import NotFound from "./pages/NotFound";
 import backgroundImage from "./assets/body-background.png";
@@ -27,6 +28,7 @@ function App() {
           <Content>
             <Routes>
               <Route path="/SignIn" element={<SignIn />} />
+              <Route path="/SignUp" element={<SignUp />} />
               <Route path="/dashboard/*" element={<DashboardPage />} />
               <Route path="/" element={<Navigate to="/SignIn" />} />
               <Route path="*" element={<NotFound />} />

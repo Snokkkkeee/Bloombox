@@ -1,53 +1,10 @@
-import React from "react";
-<<<<<<< HEAD
-import {
-  Layout,
-  Menu,
-  Typography,
-  Card,
-  Form,
-  Input,
-  Checkbox,
-  Row,
-  Col,
-} from "antd";
-import { Link } from "react-router-dom";
-import {
-  DribbbleOutlined,
-  TwitterOutlined,
-  InstagramOutlined,
-  GithubOutlined,
-} from "@ant-design/icons";
+import React, { useState } from "react";
+import { Form, Input, Button, Layout, Typography, Checkbox, Card } from "antd";
+import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-// import "/Users/jwsnooke/Desktop/Bloombox Layout/src/App.jsx"
-// import backgroundImage from 'src\assets\body-background.png';
+import { signUp } from "../Services/auth"; // Import the signUp function
 
-const { Title } = Typography;
-const { Header, Footer, Content } = Layout;
-
-const StyledFormItem = styled(Form.Item)`
-  .ant-form-item-label {
-    label {
-      color: deeppurple;
-      padding: 15px;
-      margin: 10px;
-    }
-  }
-  .ant-input {
-    margin: 10px;
-    padding: 15px;
-    border-radius: 20px;
-    border: 1px solid blue;
-    &:hover {
-      border-color: deepurple;
-    }
-  }
-`;
-=======
-import { Form, Input, Button, Layout, Typography } from "antd";
-import { UserOutlined, LockOutlined, GoogleOutlined, GithubOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom'; // Import Link
-import { Tooltip } from 'antd'; // Import Tooltip
 import logo from "../assets/GrowBox.png";
 import backgroundImage from "../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png";
 
@@ -60,15 +17,32 @@ const inputStyle = {
   borderRadius: "10px",
   color: "#333",
 };
->>>>>>> 4596cb00603e13ff29c93187f6d69210198593de
+
+const StyledFormItem = styled(Form.Item)`
+  // Add your styling here...
+`;
 
 export default function SignUp() {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); // Get the navigate function
+
+  const onFinish = async (values) => {
+    try {
+      // Call the signUp function with user data
+      await signUp({
+        email: values.email,
+        password: values.password,
+        nickname: values.nickname,
+      });
+
+      // Redirect to login page after successful signup
+      navigate("/SignIn");
+    } catch (error) {
+      setErrorMessage("Unable to sign up. Please try again later.");
+    }
   };
 
   return (
-<<<<<<< HEAD
     <Layout
       style={{
         backgroundImage: `url(${backgroundImage})`,
@@ -76,60 +50,6 @@ export default function SignUp() {
         minHeight: "100vh",
       }}
     >
-      <Header>
-        <div className="logo" />
-      </Header>
-      <Content style={{ padding: "0 50px" }}>
-        <div className="site-layout-content">
-          <Row justify="center">
-            <Col span={16}>
-              <Title style={{ color: "white" }}>Sign Up</Title>
-              <p>
-                Use these awesome forms to login or create new account in your
-                project for free.
-              </p>
-              <Card title="Register With">
-                <Form
-                  name="basic"
-                  initialValues={{ remember: true }}
-                  onFinish={onFinish}
-                  onFinishFailed={onFinishFailed}
-                >
-                  <StyledFormItem
-                    label="Email"
-                    name="email"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input your email!",
-                        type: "email",
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </StyledFormItem>
-                  <StyledFormItem
-                    label="Password"
-                    name="password"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input your password!",
-                      },
-                    ]}
-                  >
-                    <Input.Password />
-                  </StyledFormItem>
-                  <Form.Item name="remember" valuePropName="checked">
-                    <Checkbox>Remember me</Checkbox>
-                  </Form.Item>
-                </Form>
-              </Card>
-            </Col>
-          </Row>
-=======
-    <Layout style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', minHeight: '100vh', minWidth: '50vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-
       <Content
         style={{
           display: "flex",
@@ -170,56 +90,43 @@ export default function SignUp() {
             onFinish={onFinish}
             style={{ marginTop: "30px" }}
           >
-            <Form.Item
-              name="username"
-              rules={[
-                { required: true, message: "Please input your Username!" },
-              ]}
-            >
-              <Input
-                prefix={<UserOutlined />}
-                placeholder="Username"
-                style={inputStyle}
-              />
-            </Form.Item>
-            <Form.Item
+            <StyledFormItem
+              label="Email"
               name="email"
               rules={[
-                { required: true, message: "Please input your Email!" },
+                {
+                  required: true,
+                  message: "Please input your email!",
+                  type: "email",
+                },
               ]}
             >
-              <Input
-                prefix={<UserOutlined />}
-                placeholder="Email"
-                style={inputStyle}
-              />
-            </Form.Item>
-            <Form.Item
+              <Input style={inputStyle} />
+            </StyledFormItem>
+            <StyledFormItem
+              label="Password"
               name="password"
               rules={[
-                { required: true, message: "Please input your Password!" },
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
               ]}
             >
-              <Input
-                prefix={<LockOutlined />}
-                type="password"
-                placeholder="Password"
-                style={inputStyle}
-              />
-            </Form.Item>
-            <Form.Item
-              name="confirmPassword"
+              <Input.Password style={inputStyle} />
+            </StyledFormItem>
+            <StyledFormItem
+              label="Nickname"
+              name="nickname"
               rules={[
-                { required: true, message: "Please confirm your Password!" },
+                {
+                  required: true,
+                  message: "Please input your nickname!",
+                },
               ]}
             >
-              <Input
-                prefix={<LockOutlined />}
-                type="password"
-                placeholder="Confirm Password"
-                style={inputStyle}
-              />
-            </Form.Item>
+              <Input style={inputStyle} />
+            </StyledFormItem>
             <Form.Item>
               <Button
                 type="primary"
@@ -237,23 +144,47 @@ export default function SignUp() {
               </Button>
             </Form.Item>
           </Form>
- <Button icon={<GoogleOutlined />} style={{ width: '60%', height: '40px', fontSize: '16px', backgroundColor: '#2accb6', color: 'white', borderRadius: '15px', border: 'none', marginBottom: '15px' }}>
+          {errorMessage && (
+            <Text type="danger" style={{ marginBottom: "15px" }}>
+              {errorMessage}
+            </Text>
+          )}
+          <Button
+            icon={<GoogleOutlined />}
+            style={{
+              width: "60%",
+              height: "40px",
+              fontSize: "16px",
+              backgroundColor: "#2accb6",
+              color: "white",
+              borderRadius: "15px",
+              border: "none",
+              marginBottom: "15px",
+            }}
+          >
             Sign up with Google
           </Button>
-          <Button icon={<GithubOutlined />} style={{ width: '60%', height: '40px', fontSize: '16px', backgroundColor: '#333', color: 'white', borderRadius: '15px', border: 'none', marginBottom: '15px' }}>
+          <Button
+            icon={<GithubOutlined />}
+            style={{
+              width: "60%",
+              height: "40px",
+              fontSize: "16px",
+              backgroundColor: "#333",
+              color: "white",
+              borderRadius: "15px",
+              border: "none",
+              marginBottom: "15px",
+            }}
+          >
             Sign up with GitHub
           </Button>
-          <hr></hr>
-           <Tooltip title="Go back to Sign In">
-            <Link to="/"> 
+          <hr />
+          <Link to="/SignIn">
             <Text type="secondary">Back to Sign In</Text>
-            </Link>          
-          </Tooltip>
-     
->>>>>>> 4596cb00603e13ff29c93187f6d69210198593de
+          </Link>
         </div>
       </Content>
     </Layout>
   );
 }
-
