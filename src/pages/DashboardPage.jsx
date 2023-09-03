@@ -26,7 +26,7 @@ const DashboardPage = () => {
               
              
             
-              <Card className="dashboard-card">
+              <Card className="Welcome">
                 <WelcomePage />
               </Card>
             </Col>

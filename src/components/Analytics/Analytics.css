@@ -100,3 +100,16 @@
     background: #555;
   }
   
+  .Welcome {
+ width: 100%;
+  margin-bottom: 16px;
+  background-color: rgba(12, 35, 55, 0.11);
+  border-color: #3d2873;
+  color: #2accb6;
+   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+   border-radius: 15px;
+
+
+}
