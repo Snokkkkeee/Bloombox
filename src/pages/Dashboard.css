@@ -10,7 +10,7 @@
 /* Layout */
 body {
   font-family: "Roboto", sans-serif;
-  background: url("../assets/body-background 2.png"),
+  background: url("../assets/body-background2.png"),
     linear-gradient(to right, purple, blue);
   background-size: cover;
   min-height: 100vh;
@@ -80,17 +80,14 @@ body {
 
 /* Custom Scrollbar */
 
-
 .Welcome {
- width: 100%;
+  width: 100%;
   margin-bottom: 16px;
   background-color: rgba(12, 35, 55, 0.11);
   border-color: #3d2873;
   color: #2accb6;
-   display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-   border-radius: 15px;
-
-
+  border-radius: 15px;
 }
