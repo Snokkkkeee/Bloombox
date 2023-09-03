@@ -11,7 +11,8 @@ import WaterLevel from "../components/WaterLevelGauge";
 import FanControl from "../components/FanControl";
 import FertilizerDispenser from "../components/FertilizerDispenser";
 import WelcomePage from "../components/Welcome";
-import backgroundImage from '../assets/body-background.png';
+import backgroundImage from '../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png';
+
 
 const { Content } = Layout;
 
