@@ -12,25 +12,15 @@ export const signUp = async (data) => {
       data.email,
       data.password
     );
-
-    // Create a document in Firestore with the user's data
     await setDoc(doc(db, "users", userCredential.user.uid), {
       email: data.email,
       nickname: data.nickname,
     });
-
-    // Return the user object
-    return userCredential.user;
+    return { user: userCredential.user, errorMessage: null };
   } catch (error) {
-    return new Error("Unable to signup");
+    console.error("Signup Error:", error);
+    return { user: null, errorMessage: error.message };
   }
-};
-
-export const getUserById = async (id) => {
-  const query = doc(db, "users", id);
-  const user = await getDoc(query);
-
-  return user.data();
 };
 
 export const signIn = async (email, password) => {
@@ -40,17 +30,9 @@ export const signIn = async (email, password) => {
       email,
       password
     );
-    const user = userCredential.user;
-    return { user, errorMessage: null };
+    return { user: userCredential.user, errorMessage: null };
   } catch (error) {
-    if (error.code === "auth/user-not-found") {
-      const errorMessage = "This email address is not valid";
-      // document.querySelector('#error-message').textContent = errorMessage
-      return { user: null, errorMessage };
-    } else {
-      const errorMessage = "Unable to sign in. Please try again later.";
-      // document.querySelector('#error-message').textContent = errorMessage
-      return { user: null, errorMessage };
-    }
+    console.error("SignIn Error:", error);
+    return { user: null, errorMessage: error.message };
   }
 };

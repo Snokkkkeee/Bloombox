@@ -26,25 +26,19 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const onFinish = async (values) => {
-    const { user, errorMessage } = await signIn(
-      values.username,
-      values.password
-    );
+ const onFinish = async (values) => {
+  const { user, errorMessage } = await signIn(values.username, values.password);
 
-    if (user) {
-      // Assuming you have a user ID or some unique identifier in the user object
-      // This check ensures that only registered users can sign in
-      if (user.userId) {
-        setRedirectToDashboard(true);
-      } else {
-        setErrorMessage("Invalid credentials. Please try again.");
-      }
+  if (user) {
+    if (user.uid) { // Changed from user.userId to user.uid
+      setRedirectToDashboard(true);
     } else {
-      setErrorMessage(errorMessage);
+      setErrorMessage("Invalid credentials. Please try again.");
     }
-  };
-
+  } else {
+    setErrorMessage(errorMessage);
+  }
+};
   if (redirectToDashboard) {
     return <Navigate to="/dashboard" />;
   }
@@ -193,7 +187,7 @@ export default function SignIn() {
               marginBottom: "10px",
             }}
           >
-            Register
+            Sign up
           </Button>
         </div>
       </Content>
