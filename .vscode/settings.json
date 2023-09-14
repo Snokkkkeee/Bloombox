@@ -1,7 +1,12 @@
 {
+<<<<<<< HEAD
   "search.exclude": {
     "**/*.code-search": false,
     "**/bower_components": false,
     "**/node_modules": false
   }
 }
+=======
+    "git.ignoreLimitWarning": true
+}
+>>>>>>> 7926f28208874c38dbcb27d6b0353115ead0cdb2
