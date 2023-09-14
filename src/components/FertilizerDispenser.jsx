@@ -3,18 +3,32 @@ import { Switch, Typography, Row, Col } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFlask } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+
 const FertilizerIcon = styled(FontAwesomeIcon)`
-  color: ${(props) =>
-    props.fertilizerStatus
-      ? "#0000ff"
-      : "linear-gradient(to right, #c0c0c0, #808080)"};
+  position: relative;
+  color: ${(props) => props.fertilizerStatus ? '#20B2AA' : '#ADD8E6'};
   transition: color 0.3s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${(props) => props.fertilizerStatus ? 'linear-gradient(to right, #20B2AA, #ADD8E6)' : 'none'};
+    z-index: -1;
+    mask: url(${(props) => props.icon[1]}) no-repeat center / contain;
+  }
 `;
-const FertilizerDispenser = () => {
-  const [fertilizerStatus, setfertilizerstatus] = useState("OFF");
-  const handleFertilizerChange = (checked) => {
-    setfertilizerstatus(checked ? "ON" : "OFF");
+
+const FertilizerDispenser = (props) => {
+  const [isOn, setIsOn] = useState(false);
+
+  const handleSwitchChange = (checked) => {
+    setIsOn(checked);
   };
+
   return (
     <Row
       justify="space-between"
@@ -33,18 +47,15 @@ const FertilizerDispenser = () => {
         <FertilizerIcon
           icon={faFlask}
           size="3x"
-          fertilizerStatus={fertilizerStatus === "ON"}
+          fertilizerStatus={isOn}
         />
       </Col>
       <Col>
-        <Switch
-          checkedItems="ON"
-          unCheckedItems="OFF"
-          defaultChecked={fertilizerStatus === "ON"}
-          onChange={handleFertilizerChange}
-        />
+        <p>{isOn ? 'On' : 'Off'}</p>
+        <Switch checked={isOn} onChange={handleSwitchChange} />
       </Col>
     </Row>
   );
 };
+
 export default FertilizerDispenser;

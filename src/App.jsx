@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from "antd";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import DashboardPage from "./pages/DashboardPage";
+import SignIn from "./auth/SignIn";
+import SignUp from "./auth/SignUp";
+import DashboardPage from "./layout/DashboardPage";
 import NotFound from "./pages/NotFound";
 import Analytics from "./pages/Analytics";
 import Servers from "./pages/Servers";
@@ -14,9 +14,13 @@ import MyAccount from "./pages/MyAccount";
 import MyNotifications from "./pages/MyNotifications";
 import Messages from "./pages/Messages";
 import Security from "./pages/Security";
-import backgroundImage from "./assets/body-background.png";
-import Sidebar from "./components/Sidebar";
-import Navbar from "./components/Navbar";
+import backgroundImage from "./assets/body-background2.png";
+import Sidebar from "./layout/Sidebar";
+import Navbar from "./layout/Navbar";
+import GardenFormSetup from "./auth/GardenFormSetup"; 
+import CreateProfile from "./auth/CreateProfile"; 
+
+
 
 const { Content, Sider } = Layout;
 
@@ -25,7 +29,7 @@ const AppContent = () => {
   
   const shouldShowSidebarAndNavbar = () => {
     const { pathname } = location;
-    return !['/SignIn', '/SignUp', '/'].includes(pathname);
+return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includes(pathname);
   };
 
   return (
@@ -46,8 +50,10 @@ const AppContent = () => {
           )}
         <Content>
           <Routes>
-            <Route path="/SignIn" element={<SignIn />} />
-            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/createprofile" element={<CreateProfile />} />
+            <Route path="/gardenformsetup" element={<GardenFormSetup />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/overview/analytics" element={<Analytics />} />
             <Route path="/monitor/servers" element={<Servers />} />

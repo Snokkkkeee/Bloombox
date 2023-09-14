@@ -13,7 +13,7 @@ import {
   GithubOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { signUp } from '../Services/auth';
+import { signUp } from "../services/auth.js";
 import logo from '../assets/GrowBox.png';
 import backgroundImage from '../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png';
 
@@ -35,7 +35,7 @@ export default function SignUp() {
     try {
       const { user, errorMessage } = await signUp(values);
       if (user) {
-        navigate('/');
+navigate('/SignIn');
       } else {
         setErrorMessage(errorMessage);
       }

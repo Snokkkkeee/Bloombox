@@ -7,9 +7,11 @@ import {
   GithubOutlined,
 } from "@ant-design/icons";
 import { Navigate, useNavigate } from "react-router-dom";
-import { signIn } from "../Services/auth"; // Assuming you have the signIn function defined here
+import { signIn } from "../Services/auth";
 import logo from "../assets/GrowBox.png";
 import backgroundImage from "../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png";
+import { getDocs, query, collection, where } from "firebase/firestore"; 
+import { db } from "../Services/firebase";
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -30,8 +32,18 @@ export default function SignIn() {
   const { user, errorMessage } = await signIn(values.username, values.password);
 
   if (user) {
-    if (user.uid) { // Changed from user.userId to user.uid
-      setRedirectToDashboard(true);
+    if (user.uid) {
+      // Query Firestore to check if the user has a garden
+      const q = query(collection(db, 'users', user.uid, 'gardens'));
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        // No gardens found, navigate to GardenFormSetup
+        navigate("/gardenformsetup");
+      } else {
+        // Gardens found, navigate to Dashboard
+        setRedirectToDashboard(true);
+      }
     } else {
       setErrorMessage("Invalid credentials. Please try again.");
     }
@@ -39,9 +51,10 @@ export default function SignIn() {
     setErrorMessage(errorMessage);
   }
 };
-  if (redirectToDashboard) {
-    return <Navigate to="/dashboard" />;
-  }
+
+if (redirectToDashboard) {
+  return <Navigate to="/dashboard" />;
+}
 
   return (
     <Layout

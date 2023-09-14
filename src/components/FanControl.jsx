@@ -5,19 +5,33 @@ import { faWind } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 const FanIcon = styled(FontAwesomeIcon)`
-  color: ${props => props.fanState ? '#0000ff' : 'linear-gradient(to right, #c0c0c0, #808080)'}; // Changed active color to Blue and inactive color to a gradient
+  position: relative;
+  color: ${props => props.fanstate ? '#20B2AA' : '#ADD8E6'}; // Fallback color (Seafoam Green and Light Blue)
   transition: color 0.3s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${props => props.fanstate ? 'linear-gradient(to right, #20B2AA, #ADD8E6)' : 'none'};
+    z-index: -1;
+    mask: url(${props => props.icon[1]}) no-repeat center / contain;
+  }
 `;
+
 
 
 
 
 const FanControl = (props) => {
   const { fanMessage, handleFanChange } = props;
-  const [fanState, setFanState] = useState(fanMessage === 'ON');
+  const [fanstate, setfanstate] = useState(fanMessage === 'ON');
 
   const onFanChange = (checked) => {
-    setFanState(checked);
+    setfanstate(checked);
     if (typeof handleFanChange === 'function') {
       handleFanChange(checked);
     }
@@ -37,14 +51,14 @@ const FanControl = (props) => {
         <FanIcon
           icon={faWind}
           size="3x"
-          fanState={fanState}
+          fanstate={fanstate} // Pass as boolean
         />
       </Col>
       <Col>
         <Switch
-          checkedItems="ON"
-          unCheckedItems="OFF"
-          defaultChecked={fanState}
+          checkedChildren="ON"
+          unCheckedChildren="OFF"
+          defaultChecked={fanstate}
           onChange={onFanChange}
         />
       </Col>
