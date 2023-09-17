@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu, Typography } from "antd";
 import { Link } from "react-router-dom";
-import { FaHome, FaDesktop, FaWifi, FaUserCog, FaChartBar, FaServer, FaDatabase, FaNetworkWired, FaUserCircle, FaBell, FaTree, FaShieldAlt } from "react-icons/fa";
+import { FaHome, FaDesktop, FaWifi, FaTree ,FaUserCog, FaChartBar, FaServer, FaDatabase, FaNetworkWired, FaUserCircle, FaBell, FaShieldAlt } from "react-icons/fa";
 
 const { Title } = Typography;
 
@@ -39,15 +39,14 @@ const menuData = [
       { key: "19", icon: <FaBell />, text: "My Notifications", link: "/settings/mynotifications" },
       { key: "20", icon: <FaUserCog />, text: "Messages", link: "/settings/messages" },
       { key: "21", icon: <FaShieldAlt />, text: "Security", link: "/settings/security" },
-      
-       
     ],
   },
-  { key: "22",  
-    icon: <FaTree />,  
-    text: "My Gardens",  
-    link: "/gardens", 
-       },
+  {
+    key: "1",
+    icon: <FaTree />,
+text: "Garden",
+link: "/gardens",
+  },
 ];
 
 export default function Sidebar() {

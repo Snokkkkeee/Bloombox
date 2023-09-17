@@ -1,12 +1,12 @@
 {
-<<<<<<< HEAD
-  "search.exclude": {
-    "**/*.code-search": false,
-    "**/bower_components": false,
-    "**/node_modules": false
-  }
-}
-=======
+  "code_under_test": {
+    "search.exclude": {
+      "**/*.code-search": false,
+      "**/bower_components": false,
+      "**/node_modules": false
+    },
     "git.ignoreLimitWarning": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": false
 }
->>>>>>> 7926f28208874c38dbcb27d6b0353115ead0cdb2

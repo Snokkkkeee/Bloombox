@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from "antd";
+
+
 import SignIn from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
 import DashboardPage from "./layout/DashboardPage";
@@ -33,6 +35,9 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
   };
 
   return (
+    
+    
+    
     <Layout
       style={{
         backgroundImage: `url(${backgroundImage})`,
@@ -46,6 +51,7 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
           {shouldShowSidebarAndNavbar() && (
             <Sider width={200}>
               <Sidebar />
+               
             </Sider>
           )}
         <Content>
@@ -72,10 +78,13 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
       </Layout>
       </Layout>
       </Layout>
+      
+      
   );
 };
 
 function App() {
+ 
   return (
     <Router>
       <AppContent />

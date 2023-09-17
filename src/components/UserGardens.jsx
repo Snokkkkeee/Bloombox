@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Card, Button, Modal, Form, Select, Spin, DatePicker, Switch, Upload, Input, Row, Col, message } from 'antd';
+import {  Button, Modal, Form, Select, Spin, DatePicker, Switch, Upload, Input, Row, Col, message } from 'antd';
 import { PlusOutlined, PlusCircleOutlined, CloudOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf, faCalendarAlt, faSun, faDroplet, faEnvelope, faBell, faSms } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import { db } from "../Services/firebase";
 import { streamGardens } from '../Services/streamGardens';
-import styled from 'styled-components';
+import {styled} from 'styled-components';
 
 
 const StyledButton = styled(Button)`
@@ -19,7 +19,16 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const StyledCard = styled(Card)`
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #667eea, #9F7AEA);
+  height: 100vh;
+  `;
+
+const Card = styled.div`
   background: radial-gradient(circle, #d5ecc2, #98ddca);
   border: 3px solid #98ddca;
   border-radius: 15px;
@@ -42,13 +51,18 @@ const StyledForm = styled(Form)`
   }
 `;
 
-const Title = styled('h1')`
+const Title = styled.h1`
   font-size: 42px;
   margin-bottom: 100px;
 color: #333;
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
   letter-spacing: 2px;
   `;
+
+
+
+
+
 
 
 const StyledModal = styled(Modal)`
@@ -68,19 +82,19 @@ const UserGardens = () => {
   const [gardens, setGardens] = useState([]);
   const [loading, setLoading] = useState(true);
 
-    const [form] = Form.useForm();
-    const [searchTerm, setSearchTerm] = useState('');
+  const [form] = Form.useForm();
+  const [searchTerm, setSearchTerm] = useState('');
 
-    const handleDatePickerChange = (date) => {
-  const formattedDate = moment(date).format('YYYY-MM-DD');
-  setSowingDate(formattedDate);
-    };
- 
- 
+  const handleDatePickerChange = (date) => {
+    const formattedDate = moment(date).format('YYYY-MM-DD');
+    setSowingDate(formattedDate);
+  };
+
+
   const selectSoilRef = useRef(null);
   const selectFertilizerRef = useRef(null);
-	const [open, setOpen] = useState(false)
-	const [confirmLoading, setConfirmLoading] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [confirmLoading, setConfirmLoading] = useState(false)
 
 	const [gardenName, setGardenName] = useState('')
 	const [potQuantity, setPotQuantity] = useState(0)
@@ -89,8 +103,8 @@ const UserGardens = () => {
 
 	const [componentDisabled, setComponentDisabled] = useState(false)
 	const [autoLightCheckbox, setAutoLightCheckbox] = useState(false)
-	
-	const [autoWaterCheckbox, setAutoWaterCheckbox] = useState(false)
+
+  const [autoWaterCheckbox, setAutoWaterCheckbox] = useState(false)
   const [showOtherSoil, setShowOtherSoil] = useState(false);
   const [showOtherFertilizer, setShowOtherFertilizer] = useState(false);
   const handleSoilTypeChange = (value) => {
@@ -109,7 +123,7 @@ const UserGardens = () => {
     }
   };
 
- 
+  
     const [showOtherGardenType, setShowOtherGardenType] = useState(null);
   
     const handleGardenTypeChange = (value) => {
@@ -129,8 +143,8 @@ const UserGardens = () => {
 const handleRangePickerChange = (dates, dateStrings) => {
   // dates contains the moment() date objects for the range
   // dateStrings contains the date strings in the format 'YYYY-MM-DD'
-  
-  // Update the state with the selected date range
+
+// Update the state with the selected date range
   setFertilizerSchedule(dateStrings);
 
   console.log("Selected Dates:", dates);
@@ -138,28 +152,28 @@ const handleRangePickerChange = (dates, dateStrings) => {
 };
 
   // Fetch gardens from Firebase
-   useEffect(() => {
-  const unsubscribe = streamGardens(
-    (querySnapshot) => {
-      const updatedGardens = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setGardens(updatedGardens);
-      setLoading(false);
-    },
-    (error) => {
-      console.error("Error fetching gardens: ", error);
-      setLoading(false);
-    }
-  );
+  useEffect(() => {
+    const unsubscribe = streamGardens(
+      (querySnapshot) => {
+        const updatedGardens = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setGardens(updatedGardens);
+        setLoading(false);
+      },
+      (error) => {
+        console.error("Error fetching gardens: ", error);
+        setLoading(false);
+      }
+    );
 
-  return () => {
-    unsubscribe();
-  };
-}, []);
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
-
+  
   const showModal = (garden = {}) => {
     form.setFieldsValue(garden);
     setIsModalVisible(true);
@@ -168,48 +182,47 @@ const handleRangePickerChange = (dates, dateStrings) => {
 
 
   const handleOk = async () => {
-   const values = await form.validateFields();
+          const values = await form.validateFields();
 
-    // Check if required fields are filled
-    if (!values.gardenName || !values.potQuantity || !values.sowingDate || !values.fertilizerSchedule) {
-      console.log('Required fields are not filled');
-      return;
-    }
-   const gardenData = {
-      // Your garden data mapping here
-      gardenName: String(values.gardenName),
-      gardenType: String(values.gardenType),
-      potQuantity: Number(values.potQuantity),
-      autoLightCheckbox: Boolean(values.autoLightCheckbox),
-      autoWaterCheckbox: Boolean(values.autoWaterCheckbox),
-      sowingDate: moment(values.sowingDate).format('YYYY-MM-DD'),
-      soilType: String(values.soilType),
-      fertilizerType: String(values.fertilizerType),
-      fertilizerSchedule: values.fertilizerSchedule.map(date => moment(date).format('YYYY-MM-DD')).join(' to '),
-      upload: values.upload,
-      gardenNotes: String(values.gardenNotes),
-      emailNotifications: Boolean(values.emailNotifications),
-      pushNotifications: Boolean(values.pushNotifications),
-      smsAlerts: Boolean(values.smsAlerts),
-   };
-      
-     try {
+      // Check if required fields are filled
+      if (!values.gardenName || !values.potQuantity || !values.sowingDate || !values.fertilizerSchedule) {
+        console.log('Required fields are not filled');
+        return;
+      }
+      const gardenData = {
+        // Your garden data mapping here
+        gardenName: String(values.gardenName),
+        gardenType: String(values.gardenType),
+        potQuantity: Number(values.potQuantity),
+        autoLightCheckbox: Boolean(values.autoLightCheckbox),
+        autoWaterCheckbox: Boolean(values.autoWaterCheckbox),
+        sowingDate: moment(values.sowingDate).format('YYYY-MM-DD'),
+        soilType: String(values.soilType),
+        fertilizerType: String(values.fertilizerType),
+        fertilizerSchedule: values.fertilizerSchedule.map(date => moment(date).format('YYYY-MM-DD')).join(' to '),
+        upload: values.upload,
+        gardenNotes: String(values.gardenNotes),
+        emailNotifications: Boolean(values.emailNotifications),
+        pushNotifications: Boolean(values.pushNotifications),
+        smsAlerts: Boolean(values.smsAlerts),
+      };
+
+      try {
   await db.collection('gardens').add({
     ...gardenData,
     createdAt: new Date(),
   });
   message.success('Garden added successfully!');
-} catch (error) {
-  console.error("Error adding document: ", error);
-  message.error('Failed to add garden.');
-}
+    } catch (error) {
+      console.error('Could not save Garden to the database.');
+    }
+  
 
 
-
-
-   
-
-    setIsModalVisible(false);
+  
+    
+    
+  setIsModalVisible(false);
     form.resetFields();
     message.success('Garden added successfully!');
   };
@@ -248,14 +261,14 @@ const handleRangePickerChange = (dates, dateStrings) => {
   );
 
     
-      if (loading) <Spin tip="Loading..."></Spin>;
+  if (loading) <Spin tip="Loading..."></Spin>; 
     
   return (
-  <div>
-            
+    
+     <Wrapper>       
          
-      
-<Card title="Your Gardens" style={{ width: '100%' }}>
+         
+<Card title="Your Gardens" style={{ width: '50%' }}>
       <Input.Search
         placeholder="Search by Garden Name"
         value={searchTerm}
@@ -266,7 +279,7 @@ const handleRangePickerChange = (dates, dateStrings) => {
 
   
 
-      <Title level={3}>List of Gardens</Title>
+
 
       {gardens.map(garden => (
         <Card key={garden.id} style={{ marginBottom: '15px' }}>
@@ -289,24 +302,32 @@ const handleRangePickerChange = (dates, dateStrings) => {
         </Card>
       ))}
           </Card>
-          <Card>
-     <StyledButton
+          <Title>Start new Garden</Title>
+    <Card>
+
+
+			<StyledButton
 					size="large"
 					type="primary"
 					icon={<PlusCircleOutlined />}
 					onClick={showModal}
-					style={{ transform: 'scale(1.5)' }}>
-        Add New Garden
-      </StyledButton>
-      <StyledModal title="Add New Garden" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        		<StyledForm
+					style={{ transform: 'scale(1.5)' }}
+				/>
+			<StyledModal
+					title="Garden Builder"
+					open={open}
+					onOk={handleOk}
+					confirmLoading={confirmLoading}
+					onCancel={handleCancel}
+				>
+				<StyledForm
 						form={form}
 						labelCol={{ span: 8 }}
 						wrapperCol={{ span: 14 }}
 						layout="horizontal"
 						disabled={componentDisabled}
-						style={{ maxWidth: 600 }} >
-                <Row gutter={[16, 16]}>
+						style={{ maxWidth: 600 }}
+					>  <Row gutter={[16, 16]}>
           <Col span={16}>
 
   <Form.Item label="Garden Name" name="gardenName" selected={gardenName} onChange={e => setGardenName(e.target.value)}
@@ -431,7 +452,8 @@ const handleRangePickerChange = (dates, dateStrings) => {
 					</StyledForm>
               </StyledModal>
           </Card>
-          </div>
+          </Wrapper>
+                   
   );
 };
 
