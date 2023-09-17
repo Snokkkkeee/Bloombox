@@ -19,7 +19,7 @@ import Sidebar from "./layout/Sidebar";
 import Navbar from "./layout/Navbar";
 import GardenFormSetup from "./auth/GardenFormSetup"; 
 import CreateProfile from "./auth/CreateProfile"; 
-
+import UserGardens from "./components/UserGardens";  
 
 
 const { Content, Sider } = Layout;
@@ -63,7 +63,8 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
             <Route path="/settings/myaccount" element={<MyAccount />} />
             <Route path="/settings/mynotifications" element={<MyNotifications />} />
             <Route path="/settings/messages" element={<Messages />} />
-            <Route path="/settings/security" element={<Security />} />
+              <Route path="/settings/security" element={<Security />} />
+              <Route path="/gardens" element={<UserGardens />} /> 
             <Route path="/" element={<SignIn />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

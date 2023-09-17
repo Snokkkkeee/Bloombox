@@ -1,19 +1,12 @@
-import React, { useState, useRef } from 'react'
-
-import { AntCloudOutlined, PlusCircleOutlined, PlusOutlined } from '@ant-design/icons' // Importing ant design icons
-import { Form, Input, DatePicker, InputNumber, Tooltip, Button, Upload, Switch, Radio, Slider, Modal, Checkbox, 
-  Select, Row, Col } from 'antd';
-  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  CloudOutlined} from '@ant-design/icons';
-import { faLeaf,faTint, faCalendarAlt, faSun, faBell, faSms, faThermometerHalf, faPencilAlt, faEnvelope, faDroplet } from '@fortawesome/free-solid-svg-icons';
-; // Importing the useState hook from the react library
-import { useNavigate } from 'react-router-dom' ;// Importing the useNavigate hook from the react-router-dom library
-
-import { auth } from '../Services/firebase' ;// Importing authentication function
-import moment from 'moment' ;// Importing the moment library for date manipulation
-import { styled } from 'styled-components';
-import { addDoc, collection, Timestamp } from "firebase/firestore"; 
+import React, { useState, useEffect, useRef } from 'react';
+import { Card, Button, Modal, Form, Select, Spin, DatePicker, Switch, Upload, Input, Row, Col, message } from 'antd';
+import { PlusOutlined, PlusCircleOutlined, CloudOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLeaf, faCalendarAlt, faSun, faDroplet, faEnvelope, faBell, faSms } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
 import { db } from "../Services/firebase";
+import { streamGardens } from '../Services/streamGardens';
+import styled from 'styled-components';
 
 
 const StyledButton = styled(Button)`
@@ -26,16 +19,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to right, #667eea, #9F7AEA);
-  height: 100vh;
-  `;
-
-const Card = styled.div`
+const StyledCard = styled(Card)`
   background: radial-gradient(circle, #d5ecc2, #98ddca);
   border: 3px solid #98ddca;
   border-radius: 15px;
@@ -58,7 +42,7 @@ const StyledForm = styled(Form)`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled('h1')`
   font-size: 42px;
   margin-bottom: 100px;
 color: #333;
@@ -67,32 +51,37 @@ color: #333;
   `;
 
 
-
-
-
-
-
 const StyledModal = styled(Modal)`
   .ant-modal-header {
   
       }
 `;
+// Importing Firebase config from your Services folder
 
+const { Option } = Select;
+const { RangePicker } = DatePicker;
+const { TextArea } = Input
 
-  // Inside your createNewGrow function
+const UserGardens = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedGarden, setSelectedGarden] = useState(null);
+  const [gardens, setGardens] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-export default function GardenFormSetup() {
-	// Initializing state variables using the useState hook
-	const [form] = Form.useForm()
-	const navigate = useNavigate()
-  const { Option } = Select;
-  const { RangePicker } = DatePicker;
+    const [form] = Form.useForm();
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleDatePickerChange = (date) => {
+  const formattedDate = moment(date).format('YYYY-MM-DD');
+  setSowingDate(formattedDate);
+    };
+ 
  
   const selectSoilRef = useRef(null);
   const selectFertilizerRef = useRef(null);
 	const [open, setOpen] = useState(false)
 	const [confirmLoading, setConfirmLoading] = useState(false)
-	const { TextArea } = Input
+
 	const [gardenName, setGardenName] = useState('')
 	const [potQuantity, setPotQuantity] = useState(0)
   const [sowingDate, setSowingDate] = useState(null)
@@ -136,17 +125,6 @@ export default function GardenFormSetup() {
 		return e && e.fileList
 	}
 
-	// Function to open the modal
-	const showModal = () => {
-		setOpen(true)
-	}
-
-	// Function to handle date picker change
-const handleDatePickerChange = (date) => {
-  const formattedDate = moment(date).format('YYYY-MM-DD');
-  setSowingDate(formattedDate);
-};
-
 
 const handleRangePickerChange = (dates, dateStrings) => {
   // dates contains the moment() date objects for the range
@@ -159,72 +137,108 @@ const handleRangePickerChange = (dates, dateStrings) => {
   console.log("Formatted Date Strings:", dateStrings);
 };
 
-const createNewGrow = async (gardenData, userId) => {
-  try {
-    const userRef = collection(db, 'users', userId, 'gardens');
-    const newGardenRef = await addDoc(userRef, {
-      ...gardenData,
-      createdAt: Timestamp.fromDate(new Date()),
-    });
-    console.log("New garden added with ID: ", newGardenRef.id);
-  } catch (e) {
-    console.error("Error adding garden: ", e);
-  }
-};
+  // Fetch gardens from Firebase
+   useEffect(() => {
+  const unsubscribe = streamGardens(
+    (querySnapshot) => {
+      const updatedGardens = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setGardens(updatedGardens);
+      setLoading(false);
+    },
+    (error) => {
+      console.error("Error fetching gardens: ", error);
+      setLoading(false);
+    }
+  );
 
-	// Function to handle OK button click
-	const handleOk = async () => {
-  try {
-    const values = await form.validateFields();
+  return () => {
+    unsubscribe();
+  };
+}, []);
+
+
+  const showModal = (garden = {}) => {
+    form.setFieldsValue(garden);
+    setIsModalVisible(true);
+    setSelectedGarden(garden.id || null);
+  };
+
+
+  const handleOk = async () => {
+   const values = await form.validateFields();
 
     // Check if required fields are filled
     if (!values.gardenName || !values.potQuantity || !values.sowingDate || !values.fertilizerSchedule) {
       console.log('Required fields are not filled');
       return;
     }
-const user = auth.currentUser; // Get the current authenticated user
-    const userId = user.uid; // Extract the user ID
-
-    const gardenData = {
+   const gardenData = {
+      // Your garden data mapping here
       gardenName: String(values.gardenName),
       gardenType: String(values.gardenType),
       potQuantity: Number(values.potQuantity),
       autoLightCheckbox: Boolean(values.autoLightCheckbox),
       autoWaterCheckbox: Boolean(values.autoWaterCheckbox),
-    
-     sowingDate: String(values.sowingDate) ,
+      sowingDate: moment(values.sowingDate).format('YYYY-MM-DD'),
       soilType: String(values.soilType),
       fertilizerType: String(values.fertilizerType),
-      fertilizerSchedule: values.fertilizerSchedule.map(date => moment(date).format('YYYY-MM-DD')).join(' to '), // Assuming this is a string
-      upload: values.upload, // Assuming this is an array or object
+      fertilizerSchedule: values.fertilizerSchedule.map(date => moment(date).format('YYYY-MM-DD')).join(' to '),
+      upload: values.upload,
       gardenNotes: String(values.gardenNotes),
       emailNotifications: Boolean(values.emailNotifications),
       pushNotifications: Boolean(values.pushNotifications),
       smsAlerts: Boolean(values.smsAlerts),
-    };
-
-    // Remove undefined fields
-    const filteredGardenData = Object.fromEntries(Object.entries(gardenData).filter(([_, v]) => v !== undefined));
-
-    await createNewGrow(filteredGardenData, userId);
-    console.log(values);
-    navigate('/dashboard');
-
-    setTimeout(() => {
-      setOpen(false);
-    }, 2000);
-  } catch (error) {
-    console.error('Could not save Garden to the database.');
-  }
-};
+   };
+      
+     try {
+  await db.collection('gardens').add({
+    ...gardenData,
+    createdAt: new Date(),
+  });
+  message.success('Garden added successfully!');
+} catch (error) {
+  console.error("Error adding document: ", error);
+  message.error('Failed to add garden.');
+}
 
 
 
-	// Function to handle cancel button click
-	const handleCancel = () => {
-		setOpen(false)
-	}
 
+   
+
+    setIsModalVisible(false);
+    form.resetFields();
+    message.success('Garden added successfully!');
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+    
+      const handleDelete = async (gardenId) => {
+    const gardenRef = doc(db, 'gardens', gardenId);
+    await deleteDoc(gardenRef);
+    message.success('Garden deleted successfully!');
+      };
+    
+     const handleEdit = async (gardenId, updatedData) => {
+    const gardenRef = doc(db, 'gardens', gardenId);
+    await updateDoc(gardenRef, updatedData);
+    message.success('Garden updated successfully!');
+     };
+    
+    const handleSearch = async () => {
+    const q = query(collection(db, 'gardens'), where('gardenName', '==', searchTerm));
+    const querySnapshot = await getDocs(q);
+    const searchedGardens = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    setGardens(searchedGardens);
+  };
 
   const FormSection = ({ title, children }) => (
     <div>
@@ -233,36 +247,66 @@ const user = auth.currentUser; // Get the current authenticated user
     </div>
   );
 
-	return (
-    <Wrapper>
-    <Title>Start new Garden</Title>
-    <Card>
-		
+    
+      if (loading) <Spin tip="Loading..."></Spin>;
+    
+  return (
+  <div>
+            
+         
+      
+<Card title="Your Gardens" style={{ width: '100%' }}>
+      <Input.Search
+        placeholder="Search by Garden Name"
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+        onSearch={handleSearch}
+        enterButton={<SearchOutlined />}
+      />
 
-		
+  
 
-			<StyledButton
+      <Title level={3}>List of Gardens</Title>
+
+      {gardens.map(garden => (
+        <Card key={garden.id} style={{ marginBottom: '15px' }}>
+  <h3>{garden.gardenName}</h3>
+  <p>Type: {garden.gardenType}</p>
+  <p>Soil: {garden.soilType}</p>
+  <p>Fertilizer: {garden.fertilizerType}</p>
+  <p>Sowing Date: {garden.sowingDate}</p>
+  <p>Fertilizer Schedule: {garden.fertilizerSchedule}</p>
+  <p>Auto Light: {garden.autoLightCheckbox ? 'Enabled' : 'Disabled'}</p>
+  <p>Auto Water: {garden.autoWaterCheckbox ? 'Enabled' : 'Disabled'}</p>
+  <p>Pot Quantity: {garden.potQuantity}</p>
+  <p>Uploaded Files: {garden.upload ? garden.upload.length : 0}</p>
+  <p>Garden Notes: {garden.gardenNotes}</p>
+  <p>Email Notifications: {garden.emailNotifications ? 'Enabled' : 'Disabled'}</p>
+  <p>Push Notifications: {garden.pushNotifications ? 'Enabled' : 'Disabled'}</p>
+  <p>SMS Alerts: {garden.smsAlerts ? 'Enabled' : 'Disabled'}</p>
+          <Button icon={<EditOutlined />} onClick={() => handleEdit(garden.id, {/* updatedData */})}>Edit</Button>
+          <Button icon={<DeleteOutlined />} onClick={() => handleDelete(garden.id)}>Delete</Button>
+        </Card>
+      ))}
+          </Card>
+          <Card>
+     <StyledButton
 					size="large"
 					type="primary"
 					icon={<PlusCircleOutlined />}
 					onClick={showModal}
-					style={{ transform: 'scale(1.5)' }}
-				/>
-			<StyledModal
-					title="Garden Builder"
-					open={open}
-					onOk={handleOk}
-					confirmLoading={confirmLoading}
-					onCancel={handleCancel}
-				>
-				<StyledForm
+					style={{ transform: 'scale(1.5)' }}>
+        Add New Garden
+      </StyledButton>
+      <StyledModal title="Add New Garden" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        		<StyledForm
 						form={form}
 						labelCol={{ span: 8 }}
 						wrapperCol={{ span: 14 }}
 						layout="horizontal"
 						disabled={componentDisabled}
-						style={{ maxWidth: 600 }}
-					>  <Row gutter={[16, 16]}>
+						style={{ maxWidth: 600 }} >
+                <Row gutter={[16, 16]}>
           <Col span={16}>
 
   <Form.Item label="Garden Name" name="gardenName" selected={gardenName} onChange={e => setGardenName(e.target.value)}
@@ -289,16 +333,6 @@ const user = auth.currentUser; // Get the current authenticated user
       <Form.Item label="Sowing Date" name="sowingDate">
   <DatePicker onChange={handleDatePickerChange} suffixIcon={<FontAwesomeIcon icon={faCalendarAlt} />} />
 </Form.Item>
-
-
-
-
-
-
-
-
-
-
 
 
               
@@ -395,10 +429,13 @@ const user = auth.currentUser; // Get the current authenticated user
         
      
 					</StyledForm>
-				</StyledModal>
-   
+              </StyledModal>
+          </Card>
+          </div>
+  );
+};
 
-     </Card>
-     </Wrapper>
-	)
-}
+export default UserGardens;
+
+
+
