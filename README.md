@@ -53,4 +53,3 @@ We’re calling all code wranglers, data wizards, and plant aficionados. Check o
 
 This awesomeness is under MIT License. That means it’s free for all you plant nerds and techies to jump in!
 
-This version should evoke more excitement and human interest. Feel free to tweak it further to make it even more tailored to your project!!
