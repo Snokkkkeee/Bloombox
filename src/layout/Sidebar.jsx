@@ -41,11 +41,12 @@ const menuData = [
       { key: "21", icon: <FaShieldAlt />, text: "Security", link: "/settings/security" },
     ],
   },
-  {
-    key: "1",
+
+   {
+    key: "24",
     icon: <FaTree />,
-text: "Garden",
-link: "/gardens",
+text: "Garden Showcase",
+link: "/gardenshowcase",
   },
 ];
 

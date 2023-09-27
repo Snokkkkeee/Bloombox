@@ -2,7 +2,7 @@
 import React from 'react';
 import { Layout, Typography, Card, Form, Input, Button, Breadcrumb, Row, Col } from "antd";
 import styled from 'styled-components';
-import backgroundImage from '../assets/body-background.png';
+import backgroundImage from '../assets/bodybackground2.png';
 
 const { Title } = Typography;
 const { Header, Content } = Layout;

@@ -45,11 +45,7 @@ The BloomBox dashboard is literally a control room for your indoor jungle:
 	•	AI Plant Doctor: We’re developing tools to diagnose plant diseases before they spread.
 	•	Global Greening: We’re planning to take the world by storm, in the most eco-friendly way possible.
 
-🤝 Get Involved!
 
-We’re calling all code wranglers, data wizards, and plant aficionados. Check out our Contributing Guidelines and be part of something huge!
 
-⚖️ License
 
-This awesomeness is under MIT License. That means it’s free for all you plant nerds and techies to jump in!
 

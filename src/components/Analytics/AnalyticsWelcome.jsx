@@ -1,5 +1,5 @@
 import React from 'react';
-import "./AnalyticsWelcome.css"
+import "../../styles/AnalyticsWelcome.css"
 
 const AnalyticsWelcome = () => {
   return (

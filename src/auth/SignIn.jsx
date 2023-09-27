@@ -7,11 +7,11 @@ import {
   GithubOutlined,
 } from "@ant-design/icons";
 import { Navigate, useNavigate } from "react-router-dom";
-import { signIn } from "../Services/auth";
+import { signIn } from "../firebase/auth";
 import logo from "../assets/GrowBox.png";
 import backgroundImage from "../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png";
 import { getDocs, query, collection, where } from "firebase/firestore"; 
-import { db } from "../Services/firebase";
+import { db } from "../firebase/firebaseConfig";
 
 const { Content } = Layout;
 const { Title, Text } = Typography;

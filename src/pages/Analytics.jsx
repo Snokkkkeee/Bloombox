@@ -1,10 +1,10 @@
 import React from "react";
 import { Layout, Row, Col, Card } from "antd";
-import "../components/Analytics/Analytics.css";
+import "../styles/Analytics.css";
 import AnalyticsWelcome from "../components/Analytics/AnalyticsWelcome.jsx";
 import SessionDuration from "../components/analytics/SessionDuration";
 import UserActivity from "../components/Analytics/UserActivity.jsx";
-import backgroundImage from '../assets/body-background.png';
+import backgroundImage from '../assets/bodybackground2.png';
 
 // Import your components
 import EnergyMeter from "../components/EnergyMeter";

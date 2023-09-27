@@ -10,7 +10,7 @@
 /* Layout */
 body {
   font-family: "Roboto", sans-serif;
-  background: url("../assets/body-background2.png"),
+  background: url("../assets/bodybackground2.png"),
     linear-gradient(to right, purple, blue);
   background-size: cover;
   min-height: 100vh;

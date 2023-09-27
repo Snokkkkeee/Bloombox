@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from "antd";
 
@@ -16,18 +16,21 @@ import MyAccount from "./pages/MyAccount";
 import MyNotifications from "./pages/MyNotifications";
 import Messages from "./pages/Messages";
 import Security from "./pages/Security";
-import backgroundImage from "./assets/body-background2.png";
+import backgroundImage from "./assets/bodybackground2.png";
 import Sidebar from "./layout/Sidebar";
 import Navbar from "./layout/Navbar";
-import GardenFormSetup from "./auth/GardenFormSetup"; 
-import CreateProfile from "./auth/CreateProfile"; 
-import UserGardens from "./components/UserGardens";  
+import GardenFormSetup from "./GardenComponents/GardenFormSetup"; 
+import UserGardens from "./GardenComponents/UserGardens";  
+import GardenShowcase from "./GardenComponents/GardenShowcase";
+import Logout from "./auth/Logout";
 
 
 const { Content, Sider } = Layout;
 
 const AppContent = () => {
   const location = useLocation();
+   
+ 
   
   const shouldShowSidebarAndNavbar = () => {
     const { pathname } = location;
@@ -36,7 +39,8 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
 
   return (
     
-    
+  
+      
     
     <Layout
       style={{
@@ -58,7 +62,6 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
           <Routes>
             <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/createprofile" element={<CreateProfile />} />
             <Route path="/gardenformsetup" element={<GardenFormSetup />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/overview/analytics" element={<Analytics />} />
@@ -71,19 +74,24 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
             <Route path="/settings/messages" element={<Messages />} />
               <Route path="/settings/security" element={<Security />} />
               <Route path="/gardens" element={<UserGardens />} /> 
+                
+               <Route path="/gardenshowcase" element={<GardenShowcase />} /> 
             <Route path="/" element={<SignIn />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Content>
       </Layout>
       </Layout>
       </Layout>
-      
-      
+       
+     
   );
 };
 
 function App() {
+ 
+
  
   return (
     <Router>
