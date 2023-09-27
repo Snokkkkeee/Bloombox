@@ -1,0 +1,11 @@
+/* Add this to your CSS file */
+@keyframes beat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  .beat-icon {
+    animation: beat 1s infinite;
+  }
+  
