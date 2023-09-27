@@ -6,11 +6,12 @@ import {
   GoogleOutlined,
   GithubOutlined,
 } from "@ant-design/icons";
+import { useUser } from '../context/UserContext';
 import { Navigate, useNavigate } from "react-router-dom";
 import { signIn } from "../firebase/auth";
 import logo from "../assets/GrowBox.png";
 import backgroundImage from "../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png";
-import { getDocs, query, collection, where } from "firebase/firestore"; 
+import { getDocs, query, collection, where, getFirestore, doc, getDoc, setDoc, Timestamp } from "firebase/firestore"; 
 import { db } from "../firebase/firebaseConfig";
 
 const { Content } = Layout;
@@ -24,37 +25,68 @@ const inputStyle = {
 };
 
 export default function SignIn() {
+  const { user, setUser } = useUser(); 
   const [redirectToDashboard, setRedirectToDashboard] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const db = getFirestore();
+   console.log('setUser from useUser:', setUser); // Log the value of setUser
+  console.log('user from useUser:', user); // Log the value of user
 
- const onFinish = async (values) => {
-  const { user, errorMessage } = await signIn(values.username, values.password);
 
-  if (user) {
-    if (user.uid) {
-      // Query Firestore to check if the user has a garden
+const onFinish = async (values) => {
+  try {
+    const { user, error } = await signIn(values.username, values.password);
+    console.log('User from signIn:', user);
+    console.log('Error from signIn:', error); // Log any error message from signIn
+    
+     if (!user) {
+  // Handle null user appropriately
+  console.error('User is null:', errorMessage);
+  setErrorMessage(errorMessage || 'Login failed');
+  return;
+};
+
+
+    if (user && user.uid) {
+      
+      const userRef = doc(db, 'users', user.uid);
+      await setDoc(userRef, {
+        lastLogin: Timestamp.fromDate(new Date()), // current date and time as Timestamp
+      }, { merge: true });
+      
+      const userDoc = await getDoc(userRef);
+      const userData = userDoc.data();
+      
+      setUser({
+        ...userData,
+        lastLoginDate: user.metadata.lastSignInTime, // This is from Firebase Auth, not Firestore
+      });
+
+      console.log('User after setUser:', user);
+      
       const q = query(collection(db, 'users', user.uid, 'gardens'));
       const querySnapshot = await getDocs(q);
-
+      
       if (querySnapshot.empty) {
-        // No gardens found, navigate to GardenFormSetup
         navigate("/gardenformsetup");
       } else {
-        // Gardens found, navigate to Dashboard
         setRedirectToDashboard(true);
       }
-    } else {
-      setErrorMessage("Invalid credentials. Please try again.");
     }
-  } else {
-    setErrorMessage(errorMessage);
-  }
+    
+    else {
+      setErrorMessage(error || "Invalid credentials. Please try again.");
+    };
+  } catch (err) {
+    console.error('Error during signIn:', err);
+    setErrorMessage(err.message || 'Login failed');
+  };
 };
 
 if (redirectToDashboard) {
   return <Navigate to="/dashboard" />;
-}
+};
 
   return (
     <Layout
@@ -187,6 +219,9 @@ if (redirectToDashboard) {
           >
             Sign in with GitHub
           </Button>
+          <div style={{marginTop: "15px"}}>
+          Don't have an account?
+          </div>
           <Button
             type="link"
             onClick={() => navigate("/SignUp")}
@@ -200,10 +235,10 @@ if (redirectToDashboard) {
               marginBottom: "10px",
             }}
           >
-            Sign up
+            Sign up 
           </Button>
         </div>
       </Content>
     </Layout>
   );
-}
+};

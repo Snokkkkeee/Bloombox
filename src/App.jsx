@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from "antd";
-
+import { UserProvider } from './context/UserContext';
 
 import SignIn from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
@@ -40,7 +40,7 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
   return (
     
   
-      
+       <UserProvider>
     
     <Layout
       style={{
@@ -84,7 +84,7 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
       </Layout>
       </Layout>
       </Layout>
-       
+       </UserProvider>
      
   );
 };
@@ -94,10 +94,12 @@ function App() {
 
  
   return (
+    <UserProvider>
     <Router>
       <AppContent />
     </Router>
+    </UserProvider>
   );
-}
+};
 
 export default App;

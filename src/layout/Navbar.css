@@ -1,8 +1,4 @@
-.navbar-header {
-    padding-inline: 50px;
-    color: rgba(0, 0, 0, 0.88);
-    line-height: 64px;
-    background: #001529;
-      height : 0px;
-  }
-  
+.custom-dropdown {
+  background: linear-gradient(126.97deg, rgb(5, 21, 63) 28.26%, rgb(7, 37, 97) 91.2%) !important;
+  border-radius: 8px !important;
+}
