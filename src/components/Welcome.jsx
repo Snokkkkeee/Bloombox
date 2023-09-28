@@ -44,12 +44,12 @@ const navigate = useNavigate();
                 Glad to see you again!<br /></h6>
                 <br />
                 
-              <h3 style={{color: '#acecee'}}> Your last login was {
-    user && user.lastLogin && moment(user.lastLogin, moment.ISO_8601).isValid() 
-      ? moment(user.lastLogin).fromNow() 
-      : 'N/A'
-  }
-             </h3> 
+             <h3 style={{color: '#acecee'}}> Your last login was {
+  user && user.lastLogin && moment(new Date(user.lastLogin)).isValid() 
+    ? (console.log('Last Login:', user.lastLogin), moment(new Date(user.lastLogin)).fromNow())
+    : 'N/A'
+}
+</h3>
               
             </div>
           )}

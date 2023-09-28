@@ -30,19 +30,17 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const db = getFirestore();
-   console.log('setUser from useUser:', setUser); // Log the value of setUser
-  console.log('user from useUser:', user); // Log the value of user
+
 
 
 const onFinish = async (values) => {
   try {
     const { user, error } = await signIn(values.username, values.password);
-    console.log('User from signIn:', user);
-    console.log('Error from signIn:', error); // Log any error message from signIn
+    // Log any error message from signIn
     
      if (!user) {
   // Handle null user appropriately
-  console.error('User is null:', errorMessage);
+  
   setErrorMessage(errorMessage || 'Login failed');
   return;
 };
@@ -59,11 +57,11 @@ const onFinish = async (values) => {
       const userData = userDoc.data();
       
       setUser({
-        ...userData,
-        lastLoginDate: user.metadata.lastSignInTime, // This is from Firebase Auth, not Firestore
-      });
+    ...userData,
+    lastLoginDate: userData.lastLogin.toDate(), // Set from Firestore's lastLogin field
+  });
 
-      console.log('User after setUser:', user);
+     
       
       const q = query(collection(db, 'users', user.uid, 'gardens'));
       const querySnapshot = await getDocs(q);
@@ -79,7 +77,7 @@ const onFinish = async (values) => {
       setErrorMessage(error || "Invalid credentials. Please try again.");
     };
   } catch (err) {
-    console.error('Error during signIn:', err);
+   
     setErrorMessage(err.message || 'Login failed');
   };
 };

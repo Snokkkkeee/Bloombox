@@ -115,7 +115,7 @@ export const signUp = async (data) => {
     await sendEmailVerification(userCredential.user)
     return { user: userCredential.user, errorMessage: null }
   } catch (error) {
-    console.error('Signup Error:', error)
+    
     return { user: null, errorMessage: error.message }
   }
 }
@@ -125,7 +125,7 @@ export const updateProfile = async (userId, data) => {
     await updateDoc(doc(db, 'users', userId), { ...data })
     return { errorMessage: null }
   } catch (error) {
-    console.error('Update Error:', error)
+    
     return { errorMessage: error.message }
   }
 }
@@ -135,7 +135,7 @@ export const signIn = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
     return { user: userCredential.user, errorMessage: null }
   } catch (error) {
-    console.error('SignIn Error:', error)
+    
     return { user: null, errorMessage: error.message }
   }
 }
@@ -145,7 +145,7 @@ export const getCurrentUser = async (uid) => {
   if (userDoc.exists()) {
     return userDoc.data()
   } else {
-    console.log('No such document!')
+    
     return null
   }
 }
@@ -155,7 +155,7 @@ export const fetchUserData = async (uid) => {
   if (userDoc.exists()) {
     return userDoc.data()
   } else {
-    console.log('No such document!')
+    
     return null
   }
 }
@@ -165,7 +165,7 @@ export const fetchUsername = async (uid) => {
   if (userDoc.exists()) {
     return userDoc.data().username;
   } else {
-    console.error("User document doesn't exist");
+    
     return null;
   }
 };

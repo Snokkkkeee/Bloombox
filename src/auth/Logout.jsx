@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Layout, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth';
+import { useUser } from '../context/UserContext'; // Import useUser from UserContext
 import backgroundImage from '../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png';
 import logo from '../assets/GrowBox.png';
 
@@ -9,11 +11,23 @@ const { Title, Text } = Typography;
 
 export default function Logout() {
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    // Implement your logout logic here
-    // After logout, navigate to the SignIn page
-    navigate('/SignIn');
+  const { setUser } = useUser(); // Use setUser from useUser
+  
+  const handleLogout = async () => {
+    try {
+      const auth = getAuth();
+      await signOut(auth); // Sign out the user from Firebase
+      
+      setUser(null); // Clear user state
+      
+      // Clear user-related data from local storage, session storage, or cookies
+      
+      
+      navigate('/SignIn'); // Navigate to the SignIn page after logout
+    } catch (error) {
+      console.error('Error during sign out:', error);
+      // Optionally: Display an error message to the user
+    }
   };
 
   return (
