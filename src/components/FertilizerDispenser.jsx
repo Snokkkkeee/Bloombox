@@ -22,7 +22,7 @@ const FertilizerIcon = styled(FontAwesomeIcon)`
   }
 `;
 
-const FertilizerDispenser = (props) => {
+const FertilizerDispenser = (props /* eslint-disable-line no-unused-vars */) => {
   const [isOn, setIsOn] = useState(false);
 
   const handleSwitchChange = (checked) => {

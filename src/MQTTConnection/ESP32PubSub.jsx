@@ -1,5 +1,8 @@
+/* eslint-disable no-case-declarations */
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 import React, { useReducer, useEffect } from 'react'
-import mqtt from '/Users/jwsnooke/Desktop/Bloombox Layout/src/mqtt.d.ts'
+import mqtt from '././mqtt.d.ts'
 
 const LIGHT_ON = 'ON'
 const LIGHT_OFF = 'OFF'
@@ -126,6 +129,7 @@ export default function TempHumiItem() {
 		})
 
 		function publishLight(lightStatus) {
+			// eslint-disable-next-line no-undef
 			props.client.publish('Light', lightStatus)
 			console.log('Published Light')
 		}

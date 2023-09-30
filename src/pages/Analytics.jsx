@@ -7,9 +7,9 @@ import UserActivity from "../components/Analytics/UserActivity.jsx";
 import backgroundImage from '../assets/bodybackground2.png';
 
 // Import your components
-import EnergyMeter from "../components/EnergyMeter";
+
 import LightControl from "../components/LightControl";
-import WaterLevel from "../components/WaterLevelGauge";
+
 import FanControl from "../components/FanControl";
 import FertilizerDispenser from "../components/FertilizerDispenser";
 

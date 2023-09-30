@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout, Form, Button, Switch, List, Typography, Space, Alert, Input } from 'antd';
 import { GoogleOutlined, MobileOutlined, QuestionCircleOutlined, ClockCircleOutlined } from '@ant-design/icons';
 
-const { Title, Text } = Typography;
+const { Title, } = Typography;
 const { Content } = Layout;
 
 function Security() {

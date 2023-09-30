@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useUser } from '../context/UserContext';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import moment from 'moment';
 import "../styles/Welcome.css"
-import { Navigate, useNavigate } from "react-router-dom";
+
 
 
 
 const WelcomePage = () => {
    const { user, setUser } = useUser();
-const navigate = useNavigate();
+
    useEffect(() => {
     const fetchUserData = async () => {
       if (user && user.uid) {

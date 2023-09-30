@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout, Form, Switch, List, Typography, Space, Alert, Button, Select } from 'antd';
 import { BellOutlined, MailOutlined, MessageOutlined } from '@ant-design/icons';
 
-const { Title, Text } = Typography;
+const { Title,} = Typography;
 const { Content } = Layout;
 const { Option } = Select;
 

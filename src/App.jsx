@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from "antd";
 import { UserProvider } from './context/UserContext';
@@ -20,7 +20,7 @@ import backgroundImage from "./assets/bodybackground2.png";
 import Sidebar from "./layout/Sidebar";
 import Navbar from "./layout/Navbar";
 import GardenFormSetup from "./GardenComponents/GardenFormSetup"; 
-import UserGardens from "./GardenComponents/UserGardens";  
+ 
 import GardenShowcase from "./GardenComponents/GardenShowcase";
 import Logout from "./auth/Logout";
 
@@ -73,7 +73,7 @@ return !['/SignIn', '/SignUp', '/', '/CreateProfile', '/GardenFormSetup'].includ
             <Route path="/settings/mynotifications" element={<MyNotifications />} />
             <Route path="/settings/messages" element={<Messages />} />
               <Route path="/settings/security" element={<Security />} />
-              <Route path="/gardens" element={<UserGardens />} /> 
+        
                 
                <Route path="/gardenshowcase" element={<GardenShowcase />} /> 
             <Route path="/" element={<SignIn />} />
@@ -100,6 +100,6 @@ function App() {
     </Router>
     </UserProvider>
   );
-};
+}
 
 export default App;

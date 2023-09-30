@@ -68,8 +68,17 @@ navigate('/SignIn');
           textAlign: 'center',
           margin: '20px',
         }}>
-          <Title level={2} style={{ color: '#2accb6', marginBottom: '20px' }}>
-            Sign Up
+         <Title level={2} style={{ color: "#2accb6", marginBottom: "20px" }}>
+            Sign Up {" "}
+            <img
+              src={logo}
+              alt="GrowBox"
+              style={{
+                width: "200px",
+                verticalAlign: "middle",
+                marginBottom: "20px",
+              }}
+            />
           </Title>
           <Form name="basic" initialValues={{ remember: true }} onFinish={onFinish} style={{ marginTop: '30px' }}>
             <Form.Item name="email" rules={[{ required: true, message: 'Please input your Email!' }]}>
@@ -113,6 +122,25 @@ navigate('/SignIn');
             border: 'none',
             marginBottom: '15px',
           }}>Sign Up with GitHub</Button>
+        
+          <div style={{marginTop: "15px"}}>
+          Already have an account?
+          </div>
+          <Button
+            type="link"
+            onClick={() => navigate("/SignIn")}
+            htmlType="submit"
+            style={{
+              width: "80%",
+              height: "40px",
+              fontSize: "16px",
+              borderRadius: "15px",
+              border: "none",
+              marginBottom: "10px",
+            }}
+          >
+            Sign In
+          </Button>
         </div>
       </Content>
     </Layout>

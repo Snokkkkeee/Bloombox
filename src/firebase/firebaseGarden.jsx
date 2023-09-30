@@ -1,4 +1,4 @@
-import { addDoc, setDoc, getFirestore, collection, Timestamp } from "firebase/firestore";
+import { addDoc, setDoc,  collection, Timestamp, doc } from "firebase/firestore";
 import { db } from './firebaseConfig';
 
 export const createNewGrow = async (gardenData, userId) => {

@@ -4,6 +4,7 @@ import { FiZap, FiBatteryCharging } from "react-icons/fi";
 
 const { Title} = Typography;
 
+// eslint-disable-next-line react/prop-types
 const SvgComponent = ({ percent, label, Icon,}) => {
   return (
     <div

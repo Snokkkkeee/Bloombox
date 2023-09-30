@@ -1,8 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
+
 const UserContext = createContext();
+
+
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);

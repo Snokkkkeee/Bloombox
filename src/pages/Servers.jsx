@@ -6,7 +6,7 @@ const { Content } = Layout;
 const { Search } = Input;
 
 function Servers() {
-  const [servers, setServers] = useState([
+  const [servers,] = useState([
     { key: '1', name: 'Server 1', status: 'Online', ip: '192.168.1.1', cpu: '20%', memory: '4GB' },
     { key: '2', name: 'Server 2', status: 'Offline', ip: '192.168.1.2', cpu: '10%', memory: '8GB' },
     // Add more servers as needed

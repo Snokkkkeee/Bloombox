@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 import { message } from 'antd'
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth'
-import { setDoc, getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore'
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { getAuth,signOut, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth'
+import { setDoc, doc, updateDoc, getDoc } from 'firebase/firestore'
+import {  ref, uploadBytes } from 'firebase/storage'
 import { useNavigate } from 'react-router-dom'
 import { db } from './firebaseConfig'
 import { useState, useEffect } from 'react';

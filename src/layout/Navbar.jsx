@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { Layout,Col, Row,Popover, Input, Menu, Dropdown, Avatar, Typography, Badge, Image, Space, Statistic} from 'antd';
+import { Layout,Popover, Input, Menu, Dropdown, Avatar, Typography, Badge, Image, Space, } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMessage, faGear, faHouseUser, faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
+import {  faGear, faHouseUser, faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import moment from 'moment';
-import backgroundImage from '../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png';
+
 
 const { Header } = Layout;
-const { Text, Title } = Typography;
+const { Text,  } = Typography;
 const { Item } = Menu;
 const { Search } = Input;
 
 const Navbar = () => {
-  const [notifAnchorEl, setNotifAnchorEl] = useState(null);
+  const [, setNotifAnchorEl] = useState(null);
   const { user, setUser } = useUser();
-;
+
 
 useEffect(() => {
     const fetchUserData = async () => {

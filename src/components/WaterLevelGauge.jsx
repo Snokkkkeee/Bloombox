@@ -91,7 +91,7 @@ export default function WaterLevelGauge() {
               fontFamily: "Roboto",
             }}
           >
-            The current water level is at {percent}% of the reservoir's total
+            The current water level is at {percent}% of the reservoir total
             capacity.
           </div>
         </Col>

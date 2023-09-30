@@ -27,6 +27,7 @@ const FanIcon = styled(FontAwesomeIcon)`
 
 
 const FanControl = (props) => {
+  // eslint-disable-next-line react/prop-types
   const { fanMessage, handleFanChange } = props;
   const [fanstate, setfanstate] = useState(fanMessage === 'ON');
 
