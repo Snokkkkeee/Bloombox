@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Gauge } from '@ant-design/plots';
 import { Typography, Space, Row, Col } from 'antd';
 import { CloudOutlined } from '@ant-design/icons';
+import TempHumiItem from '../MQTTConnection/ESP32PubSub';
 
 const { Title, Text } = Typography;
 
 export default function HumidityGauge() {
-  const [humMessage, setHumMessage] = useState(50);
 
+  const [humMessage, setHumMessage] = useState(0);
+  const [humidity] = TempHumiItem();
+ 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setHumMessage(prevHum => (prevHum >= 100 ? 50 : prevHum + 1));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+   setHumMessage(humidity);
+ }, [humidity]);
 
   const config = {
     percent: humMessage / 100,

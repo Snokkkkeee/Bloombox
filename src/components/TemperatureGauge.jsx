@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Gauge } from '@ant-design/plots';
 import { Typography, Space, Row, Col } from 'antd';
 import { FireOutlined } from '@ant-design/icons';
+import TempHumiItem from '../MQTTConnection/ESP32PubSub';
 
 const { Title, Text } = Typography;
 
 export default function TemperatureGauge() {
-  const [tempMessage, setTempMessage] = useState(25);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTempMessage(prevTemp => (prevTemp >= 50 ? 25 : prevTemp + 1));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+ const [tempMessage, setTempMessage] = useState(0);
+ const [temperature] = TempHumiItem();
+
+ useEffect(() => {
+  setTempMessage(temperature);
+}, [temperature]);
 
   const config = {
     percent: tempMessage / 50,
@@ -48,7 +48,7 @@ export default function TemperatureGauge() {
         formatter: ({ percent }) => ` ${(percent * 50).toFixed(0) + '°C'}`,
         style: {
           color: 'rgba(255,255,255, 0.9)',
-          fontSize: 5,
+          fontSize: 16,
         },
       },
     },

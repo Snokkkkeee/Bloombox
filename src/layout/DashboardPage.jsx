@@ -23,9 +23,6 @@ const DashboardPage = () => {
     
           <Row gutter={16}>
             <Col xs={24} sm={24} md={24} lg={24}>
-              
-             
-            
               <Card className="Welcome">
                 <WelcomePage />
               </Card>
@@ -70,12 +67,12 @@ const DashboardPage = () => {
           <Row gutter={16}>
             <Col xs={24} sm={24} md={12}>
               <Card className="dashboard-card" title="Temperature Gauge">
-                <TemperatureGauge />
+                <TemperatureGauge/>
               </Card>
             </Col>
             <Col xs={24} sm={24} md={12}>
               <Card className="dashboard-card" title="Humidity Gauge">
-                <HumidityGauge />
+                <HumidityGauge/>
               </Card>
             </Col>
           </Row>

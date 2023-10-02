@@ -1,5 +1,5 @@
-import React, { useReducer, useEffect } from 'react'
-import mqtt from '/Users/jwsnooke/Desktop/Bloombox Layout/src/mqtt.d.ts'
+import React, { useReducer, useEffect } from 'react';
+import mqtt from 'mqtt';
 
 const LIGHT_ON = 'ON'
 const LIGHT_OFF = 'OFF'
