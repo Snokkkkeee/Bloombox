@@ -126,6 +126,7 @@ export default function TempHumiItem() {
 		})
 
 		function publishLight(lightStatus) {
+			// eslint-disable-next-line no-undef
 			props.client.publish('Light', lightStatus)
 			console.log('Published Light')
 		}

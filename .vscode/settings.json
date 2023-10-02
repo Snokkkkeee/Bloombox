@@ -16,6 +16,14 @@
  "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss06', 'zero'",
 
 
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.formatOnPaste": false, // required 
+  "editor.formatOnType": false, // required
+  "editor.formatOnSave": true, // optional 
+  "editor.formatOnSaveMode": "file", // required to format on save
+  "files.autoSave": "onFocusChange", // optional but recommended
+  "vs-code-prettier-eslint.prettierLast": false, // set as "true" to run 'prettier' last not first
+
 
  // Editor
  "editor.accessibilitySupport": "off",
@@ -193,10 +201,7 @@
  "svg.preview.mode": "svg",
 
  // I only use Prettier for manually formatting
- "prettier.enable": false,
- "prettier.printWidth": 200,
- "prettier.semi": false,
- "prettier.singleQuote": true,
+
 
  // File Nesting
    // updated 2023-09-12 03:14

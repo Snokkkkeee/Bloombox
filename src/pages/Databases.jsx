@@ -6,7 +6,7 @@ const { Content } = Layout;
 const { Search } = Input;
 
 function Databases() {
-  const [databases, setDatabases] = useState([
+  const [databases, ] = useState([
     { key: '1', name: 'Database 1', status: 'Online', type: 'MySQL', size: '20GB' },
     { key: '2', name: 'Database 2', status: 'Offline', type: 'PostgreSQL', size: '10GB' },
     // Add more databases as needed

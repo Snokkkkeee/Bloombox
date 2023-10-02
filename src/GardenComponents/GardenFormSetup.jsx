@@ -2,23 +2,23 @@
 import React, { useState, useRef } from 'react'
 import { createNewGrow } from '../firebase/firebaseGarden'; // import the service
 
-import { AntCloudOutlined, PlusCircleOutlined, PlusOutlined } from '@ant-design/icons' // Importing ant design icons
-import { Form, Input, DatePicker, InputNumber, Tooltip, Button, Upload, Switch, Radio, Slider, Modal, Checkbox, 
+import {  PlusCircleOutlined, PlusOutlined } from '@ant-design/icons' // Importing ant design icons
+import { Form, Input, DatePicker,  Button, Upload, Switch,Modal, 
   Select, Row, Col } from 'antd';
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  CloudOutlined} from '@ant-design/icons';
-import { faLeaf,faTint, faCalendarAlt, faSun, faBell, faSms, faThermometerHalf, faPencilAlt, faEnvelope, faDroplet } from '@fortawesome/free-solid-svg-icons';
-; // Importing the useState hook from the react library
+import { faLeaf, faCalendarAlt, faSun, faBell, faSms,  faEnvelope, faDroplet } from '@fortawesome/free-solid-svg-icons';
+ // Importing the useState hook from the react library
 import { useNavigate } from 'react-router-dom' ;// Importing the useNavigate hook from the react-router-dom library
 
 import { auth } from '../firebase/firebaseConfig' ;// Importing authentication function
 import moment from 'moment' ;// Importing the moment library for date manipulation
 import { styled } from 'styled-components';
-import { addDoc, collection, Timestamp } from "firebase/firestore"; 
+ 
 
 
 
-import { db } from "../firebase/firebaseConfig";
+
 
 const StyledButton = styled(Button)`
   transform: scale(1.5);
@@ -91,19 +91,19 @@ export default function GardenFormSetup() {
   const selectSoilRef = useRef(null);
   const selectFertilizerRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const { TextArea } = Input;
+  const [confirmLoading, ] = useState(false);
+ 
   const [gardenName, setGardenName] = useState("");
   const [potQuantity, setPotQuantity] = useState(0);
-  const [sowingDate, setSowingDate] = useState(null);
-  const [fertilizerSchedule, setFertilizerSchedule] = useState(null);
+  const [, setSowingDate] = useState(null);
+  const [, setFertilizerSchedule] = useState(null);
 
-  const [componentDisabled, setComponentDisabled] = useState(false);
+  const [componentDisabled, ] = useState(false);
   const [autoLightCheckbox, setAutoLightCheckbox] = useState(false);
 
   const [autoWaterCheckbox, setAutoWaterCheckbox] = useState(false);
-  const [showOtherSoil, setShowOtherSoil] = useState(false);
-  const [showOtherFertilizer, setShowOtherFertilizer] = useState(false);
+  const [, setShowOtherSoil] = useState(false);
+  const [, setShowOtherFertilizer] = useState(false);
   const handleSoilTypeChange = (value) => {
     setShowOtherSoil(value === "Other");
     if (selectSoilRef.current) {
@@ -118,7 +118,7 @@ export default function GardenFormSetup() {
     }
   };
 
-  const [showOtherGardenType, setShowOtherGardenType] = useState(null);
+  const [, setShowOtherGardenType] = useState(null);
 
   const handleGardenTypeChange = (value) => {
     setShowOtherGardenType(value === "Other");
@@ -142,6 +142,7 @@ export default function GardenFormSetup() {
     setSowingDate(formattedDate);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleRangePickerChange = (dates, dateStrings) => {
     // dates contains the moment() date objects for the range
     // dateStrings contains the date strings in the format 'YYYY-MM-DD'
@@ -195,7 +196,7 @@ export default function GardenFormSetup() {
 
       // Remove undefined fields
       const filteredGardenData = Object.fromEntries(
-        Object.entries(gardenData).filter(([_, v]) => v !== undefined)
+        Object.entries(gardenData).filter(([ v]) => v !== undefined)
       );
 
       await createNewGrow(filteredGardenData, userId);
@@ -215,6 +216,7 @@ export default function GardenFormSetup() {
     setOpen(false);
   };
 
+  // eslint-disable-next-line react/prop-types
   const FormSection = ({ title, children }) => (
     <div>
       <h3>{title}</h3>

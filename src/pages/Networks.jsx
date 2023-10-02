@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Layout, Table, Button, Space, Input, Tag, Switch, Tooltip, Progress } from 'antd';
-import { SearchOutlined, SyncOutlined, PoweroffOutlined, InfoCircleOutlined, WifiOutlined } from '@ant-design/icons';
+import { SearchOutlined, SyncOutlined,  InfoCircleOutlined, WifiOutlined } from '@ant-design/icons';
 
 const { Content } = Layout;
 const { Search } = Input;
 
 function Networks() {
-  const [networks, setNetworks] = useState([
+  const [networks, ] = useState([
     { key: '1', name: 'Network 1', status: 'Active', bandwidth: 75 },
     { key: '2', name: 'Network 2', status: 'Inactive', bandwidth: 40 },
     // Add more networks as needed

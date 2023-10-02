@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
 import { Form, Input, Button, Layout, Typography } from "antd";
 import {
@@ -11,8 +12,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { signIn } from "../firebase/auth";
 import logo from "../assets/GrowBox.png";
 import backgroundImage from "../assets/c71c3bbd-6268-43da-aa49-14ce1d1700f1.png";
-import { getDocs, query, collection, where, getFirestore, doc, getDoc, setDoc, Timestamp } from "firebase/firestore"; 
-import { db } from "../firebase/firebaseConfig";
+import { getDocs, query, collection,  getFirestore, doc, getDoc, setDoc, Timestamp } from "firebase/firestore"; 
+
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -25,7 +26,7 @@ const inputStyle = {
 };
 
 export default function SignIn() {
-  const { user, setUser } = useUser(); 
+  const { setUser } = useUser(); 
   const [redirectToDashboard, setRedirectToDashboard] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const onFinish = async (values) => {
   
   setErrorMessage(errorMessage || 'Login failed');
   return;
-};
+}
 
 
     if (user && user.uid) {
@@ -75,16 +76,16 @@ const onFinish = async (values) => {
     
     else {
       setErrorMessage(error || "Invalid credentials. Please try again.");
-    };
+    }
   } catch (err) {
    
     setErrorMessage(err.message || 'Login failed');
-  };
+  }
 };
 
 if (redirectToDashboard) {
   return <Navigate to="/dashboard" />;
-};
+}
 
   return (
     <Layout
@@ -239,4 +240,4 @@ if (redirectToDashboard) {
       </Content>
     </Layout>
   );
-};
+}

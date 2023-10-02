@@ -1,10 +1,10 @@
 import React from 'react';
-import { Layout, Breadcrumb, List, Avatar, Input, Menu, Typography } from 'antd';
-import { UserOutlined, MenuFoldOutlined, SearchOutlined, MailOutlined, DashboardOutlined } from '@ant-design/icons';
+import { Layout, List, Avatar, Input,  } from 'antd';
+import { UserOutlined, MenuFoldOutlined,  } from '@ant-design/icons';
 import styled from 'styled-components';
 
-const { Header, Content, Footer} = Layout;
-const { Text } = Typography;
+const { Header, Content, } = Layout;
+
 const { Search } = Input;
 
 const StyledHeader = styled(Header)`
@@ -16,13 +16,6 @@ const StyledContent = styled(Content)`
   margin: 0 16px;
 `;
 
-const StyledBreadcrumb = styled(Breadcrumb)`
-  margin: 16px 0;
-`;
-
-const StyledFooter = styled(Footer)`
-  text-align: center;
-`;
 
 const messages = [
   {

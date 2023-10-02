@@ -6,6 +6,7 @@ const { Content } = Layout;
 const { Search } = Input;
 
 function Systems() {
+  // eslint-disable-next-line no-unused-vars
   const [systems, setSystems] = useState([
     { key: '1', name: 'System 1', status: 'Online', type: 'Linux', cpu: 75, memory: 60 },
     { key: '2', name: 'System 2', status: 'Offline', type: 'Windows', cpu: 40, memory: 30 },
