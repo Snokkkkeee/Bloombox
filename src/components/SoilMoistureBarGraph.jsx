@@ -15,7 +15,7 @@ export default function SoilMoistureBarGraph() {
   }, [soilMoisture1]);
 
   const data = [
-    { moisture: "Plant-1", value: soilMoisture1Message },
+    { moisture: "Plant-1", value: soilMoisture1Message * 1 },
     { moisture: "Plant-2", value: 61 },
     { moisture: "Plant-3", value: 100 },
     { moisture: "Plant-4", value: 20 },
@@ -71,7 +71,10 @@ export default function SoilMoistureBarGraph() {
       size="middle"
       style={{ width: "100%", height: "100%" }}
     >
-      <Title level={4} style={{ color: "white", fontWeight: "bold" }}>
+      <Title
+        level={3}
+        style={{ color: "white", fontWeight: "bold", textAlign: "center" }}
+      >
         <EnvironmentOutlined /> Soil Moisture
       </Title>
       <Bar {...config} />

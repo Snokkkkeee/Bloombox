@@ -69,7 +69,10 @@ export default function TemperatureGauge() {
       size="middle"
       style={{ width: "100%", height: "100%" }}
     >
-      <Title level={4} style={{ color: "white", fontWeight: "bold" }}>
+      <Title
+        level={3}
+        style={{ color: "white", fontWeight: "bold", textAlign: "center" }}
+      >
         <FireOutlined /> Temperature
       </Title>
       <Gauge {...config} />
