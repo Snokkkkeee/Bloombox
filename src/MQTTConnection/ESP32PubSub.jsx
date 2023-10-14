@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from "react";
-//import mqtt from 'mqtt';
+import { lightState } from "../components/LightControl";
 
 const LIGHT_ON = "ON";
 const LIGHT_OFF = "OFF";
@@ -22,7 +22,7 @@ const initialState = {
   humMessage: "",
   isConnected: false,
   lightIsOn: false,
-  lightTopic: "",
+  Light: "",
   lightMessage: "",
   soilMoisture1: "",
   soilMoisture1Message: "",
@@ -47,18 +47,18 @@ function reducer(state, action) {
       };
     case "SET_LIGHT":
       const isLightOn = action.payload.message === "ON";
-      const lightTopic = action.payload.topic;
+      const Light = action.payload.topic;
       const lightMessage = state.lightIsOn ? "ON" : "OFF";
       if (state.lightIsOn !== isLightOn) {
         const client = mqtt.connect(options);
-        client.publish(lightTopic, lightMessage);
+        client.publish(Light, lightMessage);
         console.log("Light has been published");
         client.end();
       }
       return {
         ...state,
         lightIsOn: isLightOn,
-        lightTopic,
+        Light,
         lightMessage: lightMessage,
       };
 
